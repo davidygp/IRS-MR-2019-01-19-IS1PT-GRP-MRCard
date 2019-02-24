@@ -6,4 +6,8 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the Recommender index.")
+    return render(request, 'Recommender/index.html')
+
+def process(request):
+    print("abc")
+    print(request)
