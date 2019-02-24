@@ -17,4 +17,4 @@ class CreditCards(models.Model):
     age_min = models.PositiveSmallIntegerField()
     age_max = models.PositiveSmallIntegerField()
     total_spending_amount_min = models.PositiveIntegerField()
-    eligible = models.BooleanField(default=None) 
+    eligible = models.PositiveSmallIntegerField(default=2) 
