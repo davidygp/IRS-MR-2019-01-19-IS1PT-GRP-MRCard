@@ -10,6 +10,7 @@ class Person(models.Model):
     total_spending_amount = models.PositiveIntegerField()
 
 class CreditCards(models.Model):
+    credit_card_name = models.CharField(max_length=200, default='Unknown Credit Card Name')
     annual_income_singaporean_min = models.PositiveIntegerField()
     annual_income_pr_min = models.PositiveIntegerField()
     annual_income_foreigner_min = models.PositiveIntegerField()
