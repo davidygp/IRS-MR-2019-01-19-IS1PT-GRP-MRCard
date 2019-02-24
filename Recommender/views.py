@@ -10,4 +10,5 @@ def index(request):
 
 def process(request):
     print("abc")
-    print(request)
+    print(request.POST['age'])
+    return render(request, 'Recommender/process.html')
