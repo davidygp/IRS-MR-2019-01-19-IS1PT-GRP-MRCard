@@ -1,0 +1,12 @@
+<form action="{% url 'Recommender:end' %}" method="post">
+  {% csrf_token %}
+  Amount in Account:<br>
+  <input type="number" name="value_amount_in_account"><br>
+  Dining Spending:<br>
+  <input type="number" name="dining_spending"><br>
+  Entertainment Spending:<br>
+  <input type="number" name="entertainment_spending"><br>
+  Grocery Spending:<br>
+  <input type="text" name="grocery_spending"><br>
+  <input type="submit" value="Submit"><br>
+</form>

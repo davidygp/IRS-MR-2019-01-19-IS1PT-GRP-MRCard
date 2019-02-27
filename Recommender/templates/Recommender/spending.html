@@ -1,0 +1,12 @@
+<form action="{% url 'Recommender:bank' %}" method="post">
+  {% csrf_token %}
+  Bill Spending:<br>
+  <input type="number" name="bill_spending"><br>
+  Dining Spending:<br>
+  <input type="number" name="dining_spending"><br>
+  Entertainment Spending:<br>
+  <input type="number" name="entertainment_spending"><br>
+  Grocery Spending:<br>
+  <input type="text" name="grocery_spending"><br>
+  <input type="submit" value="Submit"><br>
+</form>
