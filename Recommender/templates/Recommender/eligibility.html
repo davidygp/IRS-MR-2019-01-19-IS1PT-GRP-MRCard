@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     {% load static %}
-	<title>Contact V5</title>
+	<title>Credit Card Recommender</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -37,32 +37,27 @@
 		<div class="wrap-contact100">
 			<form class="contact100-form validate-form">
 				<span class="contact100-form-title">
-					Contact Us
+					MRCard - Credit Card Recommender
 				</span>
                 {% csrf_token %}
-				<div class="wrap-input100 validate-input bg1" data-validate="Please Type Your Name">
+				<div class="wrap-input100 validate-input bg1" data-validate="Please Type Your Income">
 					<span class="label-input100">Annual Income *</span>
 					<input class="input100" type="text" name="annual_income" placeholder="Enter Your Annual Income">
 				</div>
 
-				<div class="wrap-input100 validate-input bg1 rs1-wrap-input100" data-validate = "Enter Your Email (e@a.x)">
-					<span class="label-input100">Email *</span>
-					<input class="input100" type="text" name="email" placeholder="Enter Your Email ">
-				</div>
-
-				<div class="wrap-input100 bg1 rs1-wrap-input100">
-					<span class="label-input100">Phone</span>
-					<input class="input100" type="text" name="phone" placeholder="Enter Number Phone">
+				<div class="wrap-input100 validate-input bg1" data-validate = "Enter Your Age (e.g. 25)">
+					<span class="label-input100">Age *</span>
+					<input class="input100" type="text" name="age" placeholder="Enter Your Age ">
 				</div>
 
 				<div class="wrap-input100 input100-select bg1">
-					<span class="label-input100">Needed Services *</span>
+					<span class="label-input100">Citizenship *</span>
 					<div>
-						<select class="js-select2" name="service">
+						<select class="js-select2" name="citizenship">
 							<option>Please chooses</option>
-							<option>eCommerce Bussiness</option>
-							<option>UI/UX Design</option>
-							<option>Online Services</option>
+							<option>Singaporean</option>
+							<option>Permanent Resident</option>
+							<option>Foreigner</option>
 						</select>
 						<div class="dropDownSelect2"></div>
 					</div>
@@ -129,14 +124,14 @@
 
 
 <!--===============================================================================================-->
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src={% static "Recommender/vendor/jquery/jquery-3.2.1.min.js" %}></script>
 <!--===============================================================================================-->
-	<script src="vendor/animsition/js/animsition.min.js"></script>
+	<script src={% static "Recommender/vendor/animsition/js/animsition.min.js" %}></script>
 <!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src={% static "Recommender/vendor/bootstrap/js/popper.js" %}></script>
+	<script src={% static "Recommender/vendor/bootstrap/js/bootstrap.min.js" %}></script>
 <!--===============================================================================================-->
-	<script src="vendor/select2/select2.min.js"></script>
+	<script src={% static "Recommender/vendor/select2/select2.min.js" %}></script>
 	<script>
 		$(".js-select2").each(function(){
 			$(this).select2({
@@ -159,12 +154,12 @@
 		})
 	</script>
 <!--===============================================================================================-->
-	<script src="vendor/daterangepicker/moment.min.js"></script>
-	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+	<script src={% static "Recommender/vendor/daterangepicker/moment.min.js" %}></script>
+	<script src={% static "Recommender/vendor/daterangepicker/daterangepicker.js" %}></script>
 <!--===============================================================================================-->
-	<script src="vendor/countdowntime/countdowntime.js"></script>
+	<script src={% static "Recommender/vendor/countdowntime/countdowntime.js" %}></script>
 <!--===============================================================================================-->
-	<script src="vendor/noui/nouislider.min.js"></script>
+	<script src={% static "Recommender/vendor/noui/nouislider.min.js" %}></script>
 	<script>
 	    var filterBar = document.getElementById('filter-bar');
 
@@ -189,7 +184,7 @@
 	    });
 	</script>
 <!--===============================================================================================-->
-	<script src="js/main.js"></script>
+	<script src={% static "Recommender/js/main.js" %}></script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
