@@ -2,177 +2,49 @@
 <html lang="en">
 <head>
     {% load static %}
-	<title>Credit Card Recommender</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->
-	<link rel="icon" type="image/png" href={% static "Recommender/images/icons/favicon.ico" %}>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href={% static "Recommender/vendor/bootstrap/css/bootstrap.min.css" %}>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href={% static "Recommender/fonts/font-awesome-4.7.0/css/font-awesome.min.css" %}>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href={% static "Recommender/fonts/iconic/css/material-design-iconic-font.min.css" %}>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href={% static "Recommender/vendor/animate/animate.css" %}>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href={% static "Recommender/vendor/css-hamburgers/hamburgers.min.css" %}>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href={% static "Recommender/vendor/animsition/css/animsition.min.css" %}>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href={% static "Recommender/vendor/select2/select2.min.css" %}>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href={% static "Recommender/vendor/daterangepicker/daterangepicker.css" %}>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href={% static "Recommender/vendor/noui/nouislider.min.css" %}>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href={% static "Recommender/css/util.css" %}>
-	<link rel="stylesheet" type="text/css" href={% static "Recommender/css/main.css" %}>
-<!--===============================================================================================-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-
-
-	<div class="container-contact100">
-		<div class="wrap-contact100">
-			<form class="contact100-form validate-form" action="{% url 'Recommender:spending' %}" method="post">
-				<span class="contact100-form-title">
-					MRCard - Credit Card Recommender
-				</span>
-                {% csrf_token %}
-
-                <!-- Income -->
-				<div class="wrap-input100 validate-input bg1" data-validate="Please Type Your Income">
-					<span class="label-input100">Annual Income *</span>
-					<input class="input100" type="text" name="annual_income" placeholder="Enter Your Annual Income">
-				</div>
-
-                <!-- Age -->
-				<div class="wrap-input100 validate-input bg1" data-validate = "Enter Your Age (e.g. 25)">
-					<span class="label-input100">Age *</span>
-					<input class="input100" type="text" name="age" placeholder="Enter Your Age ">
-				</div>
-
-                <!-- Gender -->
-				<div class="wrap-input100 input100-select bg1">
-					<span class="label-input100">Gender *</span>
-					<div>
-						<select class="js-select2" name="gender">
-							<option>Please chooses</option>
-							<option>Female</option>
-							<option>Male</option>
-						</select>
-                        <div class="dropDownSelect2"></div>
-					</div>
-				</div>
-
-                <!-- Citizenship -->
-				<div class="wrap-input100 input100-select bg1">
-					<span class="label-input100">Citizenship *</span>
-					<div>
-						<select class="js-select2" name="citizenship">
-							<option>Please chooses</option>
-							<option>Singaporean</option>
-							<option>Permanent Resident</option>
-							<option>Foreigner</option>
-						</select>
-						<div class="dropDownSelect2"></div>
-					</div>
-				</div>
-
-				<div class="container-contact100-form-btn">
-					<button class="contact100-form-btn">
-						<span>
-							Submit
-							<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
-						</span>
-					</button>
-				</div>
-			</form>
-		</div>
-	</div>
-
-
-
-<!--===============================================================================================-->
-	<script src={% static "Recommender/vendor/jquery/jquery-3.2.1.min.js" %}></script>
-<!--===============================================================================================-->
-	<script src={% static "Recommender/vendor/animsition/js/animsition.min.js" %}></script>
-<!--===============================================================================================-->
-	<script src={% static "Recommender/vendor/bootstrap/js/popper.js" %}></script>
-	<script src={% static "Recommender/vendor/bootstrap/js/bootstrap.min.js" %}></script>
-<!--===============================================================================================-->
-	<script src={% static "Recommender/vendor/select2/select2.min.js" %}></script>
-	<script>
-		$(".js-select2").each(function(){
-			$(this).select2({
-				minimumResultsForSearch: 20,
-				dropdownParent: $(this).next('.dropDownSelect2')
-			});
-
-
-			$(".js-select2").each(function(){
-				$(this).on('select2:close', function (e){
-					if($(this).val() == "Please chooses") {
-						$('.js-show-service').slideUp();
-					}
-					else {
-						$('.js-show-service').slideUp();
-						{#$('.js-show-service').slideDown();#}
-					}
-				});
-			});
-		})
-	</script>
-<!--===============================================================================================-->
-	<script src={% static "Recommender/vendor/daterangepicker/moment.min.js" %}></script>
-	<script src={% static "Recommender/vendor/daterangepicker/daterangepicker.js" %}></script>
-<!--===============================================================================================-->
-	<script src={% static "Recommender/vendor/countdowntime/countdowntime.js" %}></script>
-<!--===============================================================================================-->
-	<script src={% static "Recommender/vendor/noui/nouislider.min.js" %}></script>
-	<script>
-	    var filterBar = document.getElementById('filter-bar');
-
-	    noUiSlider.create(filterBar, {
-	        start: [ 1500, 3900 ],
-	        connect: true,
-	        range: {
-	            'min': 1500,
-	            'max': 7500
-	        }
-	    });
-
-	    var skipValues = [
-	    document.getElementById('value-lower'),
-	    document.getElementById('value-upper')
-	    ];
-
-	    filterBar.noUiSlider.on('update', function( values, handle ) {
-	        skipValues[handle].innerHTML = Math.round(values[handle]);
-	        $('.contact100-form-range-value input[name="from-value"]').val($('#value-lower').html());
-	        $('.contact100-form-range-value input[name="to-value"]').val($('#value-upper').html());
-	    });
-	</script>
-<!--===============================================================================================-->
-	<script src={% static "Recommender/js/main.js" %}></script>
-
+  <form action="{% url 'Recommender:preferences' %}" method="post">
+    {% csrf_token %}
+    <!-- income -->
+    <div class="form-group">
+      <label for="annualIncome">Annual Income</label>
+      <input type="text" class="form-control" name="annual_income" id="annualIncome" placeholder="Enter email">
+    </div>
+    <!-- age -->
+    <div class="form-group">
+      <label for="age">Age</label>
+      <input type="number" class="form-control" name="age" id="age" placeholder="Age">
+    </div>
+    <!-- gender -->
+    <div class="form-check form-check-inline">
+      Gender
+      <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="female">
+      <label class="form-check-label" for="inlineRadio1">female</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="male">
+      <label class="form-check-label" for="inlineRadio2">male</label>
+    </div>
+    <!-- citizenship -->
+    <select class="form-control requried" name="citizenship">
+      <option value="">Please Chooses</option>
+      <option value="singaporean">Singaporean</option>
+      <option value="pr">Permanent Resident</option>
+      <option value="foreigner">Foreigner</option>
+    </select>
+    <!-- spending -->
+    <div class="form-group">
+      <label for="age">Annual Spending Amount</label>
+      <input type="number" class="form-control" name="total_spending_amount" id="total_spending_amount" placeholder="Annual Spending Amount">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
 </body>
 </html>
-
-{#<form action="{% url 'Recommender:spending' %}" method="post">#}
-{#  {% csrf_token %}#}
-{#  Annual Income:<br>#}
-{#  <input type="text" name="annual_income"><br>#}
-{#  Age:<br>#}
-{#  <input type="text" name="age"><br>#}
-{#  Citizenship:<br>#}
-{#  <select name="citizenship">#}
-{#    <option value="Singaporean">Singaporean</option>#}
-{#    <option value="PR">PR</option>#}
-{#    <option value="Foreigner">Foreigner</option>#}
-{#  </select><br>#}
-{#  Total Spending Amount:<br>#}
-{#  <input type="text" name="total_spending_amount"><br>#}
-{#  <input type="submit" value="Submit"><br>#}
-{#</form>#}

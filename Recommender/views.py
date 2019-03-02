@@ -17,6 +17,15 @@ def eligibility(request):
     request.session['eligible_credit_card'] = 'eligible card'
     return render(request, 'Recommender/eligibility.html')
 
+def preferences(request):
+    return render(request, 'Recommender/preferences.html')
+
+def spending_checkbox(request):
+    return render(request, 'Recommender/spending_checkbox.html')
+
+def spending_amount(request):
+    return render(request, 'Recommender/spending_amount.html')
+
 def spending(request):
     map_POST_to_session(request)
     request.session['selected_credit_card'] = 'selected credit card'
