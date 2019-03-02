@@ -205,7 +205,7 @@
 </html>
 
 
-<form action="{% url 'Recommender:bank' %}" method="post">
+<form action="{% url 'Recommender:spending_amount' %}" method="post">
   {% csrf_token %}
   Bill Spending:<br>
   <input type="number" name="bill_spending"><br>
