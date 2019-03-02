@@ -10,6 +10,7 @@
     <title>Title</title>
 </head>
 <body>
+<div class="container">
   <form action="{% url 'Recommender:spending_checkbox' %}" method="post">
     {% csrf_token %}
     <!-- preferred_bank_rank --> <!-- TODO -->
@@ -71,5 +72,6 @@
     </div>
         <button type="submit" class="btn btn-primary">Submit</button>
   </form>
+</div><!-- content container -->
 </body>
 </html>
