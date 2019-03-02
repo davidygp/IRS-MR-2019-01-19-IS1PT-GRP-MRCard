@@ -40,16 +40,33 @@
 					MRCard - Credit Card Recommender
 				</span>
                 {% csrf_token %}
+
+                <!-- Income -->
 				<div class="wrap-input100 validate-input bg1" data-validate="Please Type Your Income">
 					<span class="label-input100">Annual Income *</span>
 					<input class="input100" type="text" name="annual_income" placeholder="Enter Your Annual Income">
 				</div>
 
+                <!-- Age -->
 				<div class="wrap-input100 validate-input bg1" data-validate = "Enter Your Age (e.g. 25)">
 					<span class="label-input100">Age *</span>
 					<input class="input100" type="text" name="age" placeholder="Enter Your Age ">
 				</div>
 
+                <!-- Gender -->
+				<div class="wrap-input100 input100-select bg1">
+					<span class="label-input100">Gender *</span>
+					<div>
+						<select class="js-select2" name="gender">
+							<option>Please chooses</option>
+							<option>Female</option>
+							<option>Male</option>
+						</select>
+                        <div class="dropDownSelect2"></div>
+					</div>
+				</div>
+
+                <!-- Citizenship -->
 				<div class="wrap-input100 input100-select bg1">
 					<span class="label-input100">Citizenship *</span>
 					<div>
@@ -61,52 +78,6 @@
 						</select>
 						<div class="dropDownSelect2"></div>
 					</div>
-				</div>
-
-				<div class="w-full dis-none js-show-service">
-					<div class="wrap-contact100-form-radio">
-						<span class="label-input100">What type of products do you sell?</span>
-
-						<div class="contact100-form-radio m-t-15">
-							<input class="input-radio100" id="radio1" type="radio" name="type-product" value="physical" checked="checked">
-							<label class="label-radio100" for="radio1">
-								Phycical Products
-							</label>
-						</div>
-
-						<div class="contact100-form-radio">
-							<input class="input-radio100" id="radio2" type="radio" name="type-product" value="digital">
-							<label class="label-radio100" for="radio2">
-								Digital Products
-							</label>
-						</div>
-
-						<div class="contact100-form-radio">
-							<input class="input-radio100" id="radio3" type="radio" name="type-product" value="service">
-							<label class="label-radio100" for="radio3">
-								Services Consulting
-							</label>
-						</div>
-					</div>
-
-					<div class="wrap-contact100-form-range">
-						<span class="label-input100">Budget *</span>
-
-						<div class="contact100-form-range-value">
-							$<span id="value-lower">610</span> - $<span id="value-upper">980</span>
-							<input type="text" name="from-value">
-							<input type="text" name="to-value">
-						</div>
-
-						<div class="contact100-form-range-bar">
-							<div id="filter-bar"></div>
-						</div>
-					</div>
-				</div>
-
-				<div class="wrap-input100 validate-input bg0 rs1-alert-validate" data-validate = "Please Type Your Message">
-					<span class="label-input100">Message</span>
-					<textarea class="input100" name="message" placeholder="Your message here..."></textarea>
 				</div>
 
 				<div class="container-contact100-form-btn">
@@ -147,7 +118,7 @@
 					}
 					else {
 						$('.js-show-service').slideUp();
-						$('.js-show-service').slideDown();
+						{#$('.js-show-service').slideDown();#}
 					}
 				});
 			});
