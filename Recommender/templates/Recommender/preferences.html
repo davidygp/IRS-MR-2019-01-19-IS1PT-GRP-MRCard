@@ -4,18 +4,60 @@
     {% load static %}
     <link rel="stylesheet" type="text/css" href={% static "Recommender/vendor/bootstrap/css/bootstrap.min.css" %}>
     <meta charset="UTF-8">
-    <title>Eligibility</title>
+    <title>Preferences</title>
 </head>
 
-<body>
+<body data-offset="80">
 <div class="container">
   <form action="{% url 'Recommender:spending_checkbox' %}" method="post">
     {% csrf_token %}
-    <!-- preferred_bank_rank --> <!-- TODO -->
-    <div class="form-group">
-      <label for="annualIncome">Preferred Bank Rank TODO</label>
-      <input type="text" class="form-control" name="preferred_bank_rank" id="preferredBankRank" placeholder="Enter email">
-    </div><!-- form-group -->
+
+    <!-- preferred_bank_rank -->
+    <fieldset class="form-group">
+      <legend>Preferred Bank Rank (1 is most preferable, no repeating number; 1 to 8) </legend>
+      <div class="form-group row">
+        <label for="DBS" class="col-sm-2 col-form-label">DBS</label>
+        <div class="col-sm-6">
+          <input type="number" class="form-control" name="preferred_bank_rank" id="preferredBankRank" placeholder="1 is most preferable">
+        </div>
+      </div><!-- form-group row-->
+      <div class="form-group row">
+        <label for="OCBC" class="col-sm-2 col-form-label">OCBC</label>
+        <div class="col-sm-6">
+          <input type="number" class="form-control" name="preferred_bank_rank" id="preferredBankRank" placeholder="1 is most preferable">
+        </div>
+      </div><!-- form-group row-->
+      <div class="form-group row">
+        <label for="HSBC" class="col-sm-2 col-form-label">HSBC</label>
+        <div class="col-sm-6">
+          <input type="number" class="form-control" name="preferred_bank_rank" id="preferredBankRank" placeholder="1 is most preferable">
+        </div>
+      </div><!-- form-group row-->
+      <div class="form-group row">
+        <label for="Citibank" class="col-sm-2 col-form-label">Citibank</label>
+        <div class="col-sm-6">
+          <input type="number" class="form-control" name="preferred_bank_rank" id="preferredBankRank" placeholder="1 is most preferable">
+        </div>
+      </div><!-- form-group row-->
+      <div class="form-group row">
+        <label for="Maybank" class="col-sm-2 col-form-label">Maybank</label>
+        <div class="col-sm-6">
+          <input type="number" class="form-control" name="preferred_bank_rank" id="preferredBankRank" placeholder="1 is most preferable">
+        </div>
+      </div><!-- form-group row-->
+      <div class="form-group row">
+        <label for="UOB" class="col-sm-2 col-form-label">UOB</label>
+        <div class="col-sm-6">
+          <input type="number" class="form-control" name="preferred_bank_rank" id="preferredBankRank" placeholder="1 is most preferable">
+        </div>
+      </div><!-- form-group row-->
+      <div class="form-group row">
+        <label for="Standard Chartered" class="col-sm-2 col-form-label">Standard Chartered</label>
+        <div class="col-sm-6">
+          <input type="number" class="form-control" name="preferred_bank_rank" id="preferredBankRank" placeholder="1 is most preferable">
+        </div>
+      </div><!-- form-group row-->
+    </fieldset>
 
     <!-- preferred_card_type -->
     <div class="form-group">
@@ -55,23 +97,7 @@
         </div>
     </div><!-- form-group -->
 
-    <!-- preferred_rewards_type 2-->
-<!--     <div class="form-group">
-        <label for="preferred_rewards_type">Preferred Rewards Type</label><br>
-        <div class="form-check form-check-inline" name="preferred_rewards_type">
-          <input class="form-check-input" type="checkbox" name="preferred_rewards_type" id="inlineCheckbox1" value="cashback">
-          <label class="form-check-label" for="cashback">Cashback</label>
-        </div>
-        <div class="form-check form-check-inline" name="preferred_rewards_type">
-          <input class="form-check-input" type="checkbox" name="preferred_rewards_type" id="inlineCheckbox2" value="miles">
-          <label class="form-check-label" for="inlineCheckbox2">Miles</label>
-        </div>
-        <div class="form-check form-check-inline" name="preferred_rewards_type">
-          <input class="form-check-input" type="checkbox" name="preferred_rewards_type" id="inlineCheckbox3" value="points">
-          <label class="form-check-label" for="inlineCheckbox3">Rewards</label>
-        </div> -->
-    <!-- </div>form-group -->
-        <button type="submit" class="btn btn-primary">Next</button>
+    <button type="submit" class="btn btn-primary">Next</button>
   </form>
 </div><!-- content container -->
 </body>
