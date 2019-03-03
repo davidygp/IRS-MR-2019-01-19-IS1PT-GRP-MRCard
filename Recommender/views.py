@@ -48,6 +48,9 @@ def eligibility(request):
     # This is the first html page
     return render(request, 'Recommender/eligibility.html')
 
+def test(request):
+    # This is the first html page
+    return render(request, 'Recommender/test.html')
 
 def preferences(request):
     # This is the second html page
