@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href={% static "Recommender/vendor/bootstrap/css/bootstrap.min.css" %}>
+    <meta charset="UTF-8">
+    <title>Eligibility</title>
+</head>
+
+<body>
+<div class="container">
+  <form action="{% url 'Recommender:recommendation' %}" method="post">
+    {% csrf_token %}
+        <fieldset class="form-group">
+            <legend>Grocery</legend>
+            <div class="form-group">
+                <label for="ntuc">NTUC</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+        </fieldset>
+
+
+
+<!--         {% for field in user_form %}
+        <tr>
+            {% if field.label == '评估总结' %}
+            <th colspan="6" class="center">
+                <label>{{ field.label}}</label>
+            </th>
+            </tr>
+            <tr>
+                <td colspan="6" class="center">
+                {{ field }}
+                </td>
+            {% else %}
+            <th colspan="5">
+                {{ field.label}}
+            </th>
+            <td>
+                {{ field }}
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %} -->
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div><!-- content container -->
+
+
+</body>
+</html>
