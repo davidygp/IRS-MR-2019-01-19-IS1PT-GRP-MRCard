@@ -101,10 +101,58 @@ credit_card_spending_list = ['credit_card_id',
 'retail_shopping_cashback_min_spend',
 'transport_cashback_rate',
 'transport_cashback_cap',
-'transport_cashback_min_spend'
-]
+'transport_cashback_min_spend']
+personal_info_default_dict = {'annual_income':0,
+'age':0,
+'gender':'M',
+'citizenship':'foreigner',
+'total_spending_amount':0}
+spending_checkbox_default_dict = {'bill_checkbox':0,
+'dining_checkbox':0,
+'entertainment_checkbox':0,
+'foreign_checkbox':0,
+'groceries_checkbox':0,
+'online_shopping_checkbox':0,
+'petrol_checkbox':0,
+'retail_shopping_checkbox':0,
+'transport_checkbox':0}
+spending_amounts_default_dict = {'bill_spending':0,
+'dining_spending':0,
+'entertainment_spending':0,
+'foreign_spending':0,
+'groceries_others_spending':0,
+'groceries_ntuc_spending':0,
+'groceries_sheng_siong_spending':0,
+'groceries_cold_storage_spending':0,
+'groceres_giant_spending':0,
+'online_shopping_others_spending':0,
+'online_shopping_hotels_and_flight_spending':0,
+'petrol_others_spending':0,
+'petrol_esso_spending':0,
+'petrol_caltex_spending':0,
+'petrol_shell_spending':0,
+'retail_shopping_spending':0,
+'transport_spending':0}
+
 
 # Functions used below
+def retrieve_data_or_set_to_default(input_dict, default_dict):
+    '''
+    Given a dictionary of data (e.g. from the HTML POST request) and a default dictionary.
+    For fields that are not in the dictionary of data but in the default dictionary, assign the new fields as the default.
+    '''
+    output_dict = {}
+    for key in default_dict.keys():
+        try:
+            val = input_dict[key] # Check if key exists
+            if len(val) == 0: # If it is empty
+                output_dict[key] = default_dict[key]
+            else:
+                output_dict[key] = convert_string_to_int_or_float(val) 
+        except:
+            output_dict[key] = default_dict[key] 
+    return output_dict
+
 def convert_string_to_int_or_float(string):
     '''
     Converts the string which can contain a string, int or float, into a string, int or float
@@ -133,7 +181,6 @@ def retrieve_subset_out_of_query_set(query_set, list_of_keys):
         sub_dictionary = {}
         for key in list_of_keys:
             item = query_set[i][key]
-            print(item)
             try:
                 processed_item = [convert_string_to_int_or_float(x) for x in item.split(',')]
             except:
@@ -144,7 +191,6 @@ def retrieve_subset_out_of_query_set(query_set, list_of_keys):
 
 def map_POST_to_session(request):
     key_list = list(request.POST.keys())
-    print(key_list)
     key_list.remove('csrfmiddlewaretoken')
     for key in key_list:
         request.session[key] = request.POST[key] 
@@ -164,12 +210,12 @@ def preferences(request):
     map_POST_to_session(request) # Save the POST data into the session
     
     ## Retrieve Personal eligibility info ##
-    personal_info=request.POST
+    personal_info = retrieve_data_or_set_to_default(request.POST, personal_info_default_dict)
     ## Retrieve Credit Card eligibility info ##
     all_credit_card_info = CreditCards.objects.values()
     #print(all_credit_card_info) 
     credit_card_eligibility_info = retrieve_subset_out_of_query_set(all_credit_card_info, credit_card_eligibility_list)
-    print(credit_card_eligibility_info)
+    #print(credit_card_eligibility_info)
     ## Calculate the eligible Credit Cards here ##
     #TODO# (LD/YZ)
     eligible_credit_card_ids = {'eligible_credit_card_ids':[1,2,3]} # Get this from LD/YZ
@@ -191,7 +237,8 @@ def spending_amount(request):
     map_POST_to_session(request) # Save the POST data into the session
 
     ## Retrieve Spending Checkbox info ##
-    spending_checkbox_info=request.POST
+    spending_checkbox_info = retrieve_data_or_set_to_default(request.POST, spending_checkbox_default_dict)
+    print(spending_checkbox_info)
     ## Assign what data to show in the spending_amount.html ##
     #TODO# (LD/YZ)
     eligible_spending = {'eligible_spending':['bill','dining','retail','transport']} # Get this from LD/YZ
@@ -214,24 +261,32 @@ def recommendation(request):
                                     'miles_preference_rank':2,
                                     'points_preference_rank':3} # To-be changed #
     ## Retrieve Spending Amounts info ##
-    spending_amounts_info=request.POST
+    spending_amounts_info = retrieve_data_or_set_to_default(request.POST, spending_amounts_default_dict)
+    print(spending_amounts_info)
     ## Retrieve Credit Card cashback/miles/points info ##
     all_credit_card_info = CreditCards.objects.values()
     credit_card_spending_info = retrieve_subset_out_of_query_set(all_credit_card_info, credit_card_spending_list)
-    print(credit_card_spending_info)
+    #print(credit_card_spending_info)
     ## Calculate the Ideal & Preferred Credit Card ##
     #TODO# (LD/YZ)
     Recommendation = {'ideal_credit_card':'placeholder ideal credit card',
                         'preferred_credit_card':'placeholder preferred credit card',
-                        'cashback_amount':1234,
-                        'miles_amount':5678,
-                        'points_amount':9012} # Get from LD/YZ
+                        'ideal_cashback_amount':1234,
+                        'ideal_miles_amount':5678,
+                        'ideal_points_amount':9012,
+                        'preferred_cashback_amount':1234,
+                        'preferred_miles_amount':5678,
+                        'preferred_points_amount':9012} # Get from LD/YZ
+
     context = {
     'ideal_credit_card':Recommendation['ideal_credit_card'],
     'preferred_credit_card':Recommendation['preferred_credit_card'],
-    'cashback_amount':Recommendation['cashback_amount'],
-    'miles_amount':Recommendation['miles_amount'],
-    'points_amount':Recommendation['points_amount']
+    'ideal_cashback_amount':Recommendation['ideal_cashback_amount'],
+    'ideal_miles_amount':Recommendation['ideal_miles_amount'],
+    'ideal_points_amount':Recommendation['ideal_points_amount'],
+    'preferred_cashback_amount':Recommendation['preferred_cashback_amount'],
+    'preferred_miles_amount':Recommendation['preferred_miles_amount'],
+    'preferred_points_amount':Recommendation['preferred_points_amount']
     }
     return render(request, 'Recommender/recommendation.html', context)
 
@@ -240,23 +295,3 @@ def no_recommendation(requests):
     # This is also the last html page (if there are no eligible Credit Cards)
     return render(request, 'Recommender/no_recommendation.html')
 
-#def spending(request):
-#    map_POST_to_session(request)
-#    request.session['selected_credit_card'] = 'selected credit card'
-#    def get_queryset(self):
-#        """Return all the credit cards"""
-#        return CreditCard.objects.all()
-#    return render(request, 'Recommender/spending.html')
-
-#def bank(request):
-#    map_POST_to_session(request)
-#    print(request.session['age'])
-#    request.session['selected_bank'] = 'selected bank'
-#    return render(request, 'Recommender/bank.html')
-
-#def end(request):
-#    print("SESSION 3", request.session)
-#    print("AGE", request.session['age'])
-#    print("BILL SPENDING", request.session['bill_spending'])
-#    context = {'selected_credit_card': request.session['selected_credit_card']}
-#    return render(request, 'Recommender/end.html', context)
