@@ -2,49 +2,65 @@
 <html lang="en">
 <head>
     {% load static %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href={% static "Recommender/vendor/bootstrap/css/bootstrap.min.css" %}>
-    <meta charset="UTF-8">
-    <title>Eligibility</title>
+    <title>Spending Amount</title>
 </head>
 
 <body>
 <div class="container">
   <form action="{% url 'Recommender:recommendation' %}" method="post">
     {% csrf_token %}
+        {% for spending in eligible_spending %}
         <fieldset class="form-group">
+          {% if spending == 'bill' %}
             <div class="form-group">
                 <legend>Bill</legend>
                 <label for="bill" hidden>Bill</label>
                 <input type="number" class="form-control" name="bill_spending" placeholder="Amount you spent every month">
             </div>
+          {% endif %}
+          {% if spending == 'dining' %}
             <div class="form-group">
                 <legend>Dining</legend>
                 <label for="dining" hidden>Dining</label>
                 <input type="number" class="form-control" name="dining_spending" placeholder="Amount you spent every month">
             </div>
+          {% endif %}
+          {% if spending == 'entertainment' %}
             <div class="form-group">
                 <legend>Entertainment</legend>
                 <label for="entertainment" hidden>Entertainment</label>
                 <input type="number" class="form-control" name="entertainment_spending" placeholder="Amount you spent every month">
             </div>
+          {% endif %}
+          {% if spending == 'foreign' %}
             <div class="form-group">
                 <legend>Foreign Currency Spending (converted to SGD)</legend>
                 <label for="foreign" hidden>Foreign Currency Spending (converted to SGD)</label>
                 <input type="number" class="form-control" name="foreign_spending" placeholder="Amount you spent every month">
             </div>
+          {% endif %}
+          {% if spending == 'retail' %}
             <div class="form-group">
                 <legend>Retail Shopping</legend>
                 <label for="retail_shopping" hidden>Retail Shopping</label>
                 <input type="number" class="form-control" name="retail_spending" placeholder="Amount you spent every month">
             </div>
+          {% endif %}
+          {% if spending == 'transport' %}
             <div class="form-group">
                 <legend>Transport</legend>
                 <label for="transport" hidden>Transport</label>
                 <input type="number" class="form-control" name="transport_spending" placeholder="Amount you spent every month">
             </div>
+          {% endif %}
         </fieldset>
 
         <!-- Grocery -->
+        {% if spending == 'grocery' %}
         <fieldset class="form-group">
           <legend>Grocery</legend>
           <div class="form-group row">
@@ -72,8 +88,10 @@
             </div>
           </div><!-- form-group row-->
         </fieldset>
+        {% endif %}
 
         <!-- Petrol -->
+        {% if spending == 'petrol' %}
         <fieldset class="form-group">
           <legend>Petrol</legend>
           <div class="form-group row">
@@ -101,8 +119,10 @@
             </div>
           </div><!-- form-group row-->
         </fieldset>
+        {% endif %}
 
         <!-- Online Shopping -->
+        {% if spending == 'online' %}
         <fieldset class="form-group">
           <legend>Online Shopping</legend>
           <div class="form-group row">
@@ -118,28 +138,7 @@
             </div>
           </div><!-- form-group row-->
         </fieldset>
-
-<!--         {% for field in user_form %}
-        <tr>
-            {% if field.label == '评估总结' %}
-            <th colspan="6" class="center">
-                <label>{{ field.label}}</label>
-            </th>
-            </tr>
-            <tr>
-                <td colspan="6" class="center">
-                {{ field }}
-                </td>
-            {% else %}
-            <th colspan="5">
-                {{ field.label}}
-            </th>
-            <td>
-                {{ field }}
-            </td>
-            {% endif %}
-        </tr>
-        {% endfor %} -->
+        {% endfor %}
 
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
