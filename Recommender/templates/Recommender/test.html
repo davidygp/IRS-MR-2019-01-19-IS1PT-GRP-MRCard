@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
+.lead {
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+</style>
 <head>
     {% load static %}
     <link rel="stylesheet" type="text/css" href={% static "Recommender/vendor/bootstrap/css/bootstrap.min.css" %}>
@@ -8,54 +14,63 @@
 </head>
 
 <body>
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+      <h1 class="display-4">Recommendation</h1>
+      <p class="lead">Here is the credit cards we recommend to you based on you spending habits.</p>
+    </div>
 <div class="container">
-  <form action="{% url 'Recommender:recommendation' %}" method="post">
-    {% csrf_token %}
-        <fieldset class="form-group">
-            <legend>Grocery</legend>
-            <div class="form-group">
-                <label for="ntuc">NTUC</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-            </div>
-            <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-            </div>
-        </fieldset>
+      <div class="card-deck mb-3 text-center">
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Based on Your Choice</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">$0 <small class="text-muted">/ mo</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>10 users included</li>
+              <li>2 GB of storage</li>
+              <li>Email support</li>
+              <li>Help center access</li>
+            </ul>
+            <button type="button" class="btn btn-lg btn-block btn-outline-primary">Apply</button>
+          </div>
+        </div>
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Ideal Card</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">$15 <small class="text-muted">/ mo</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>20 users included</li>
+              <li>10 GB of storage</li>
+              <li>Priority email support</li>
+              <li>Help center access</li>
+            </ul>
+            <button type="button" class="btn btn-lg btn-block btn-outline-primary">Apply</button>
+          </div>
+        </div>
+<!--         <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Enterprise</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">$29 <small class="text-muted">/ mo</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>30 users included</li>
+              <li>15 GB of storage</li>
+              <li>Phone and email support</li>
+              <li>Help center access</li>
+            </ul>
+            <button type="button" class="btn btn-lg btn-block btn-primary">Contact us</button>
+          </div>
+        </div>
+      </div> -->
 
+    </div>
 
-
-<!--         {% for field in user_form %}
-        <tr>
-            {% if field.label == '评估总结' %}
-            <th colspan="6" class="center">
-                <label>{{ field.label}}</label>
-            </th>
-            </tr>
-            <tr>
-                <td colspan="6" class="center">
-                {{ field }}
-                </td>
-            {% else %}
-            <th colspan="5">
-                {{ field.label}}
-            </th>
-            <td>
-                {{ field }}
-            </td>
-            {% endif %}
-        </tr>
-        {% endfor %} -->
-
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-</div><!-- content container -->
-
+<script src={% static "Recommender/vendor/jquery/jquery-3.2.1.min.js" %}></script>
+<script src={% static "Recommender/vendor/bootstrap/js/popper.js" %}></script>
+<script src={% static "Recommender/vendor/bootstrap/js/bootstrap.min.js" %}></script>
 
 </body>
-</html>

@@ -12,70 +12,112 @@
   <form action="{% url 'Recommender:recommendation' %}" method="post">
     {% csrf_token %}
         <fieldset class="form-group">
-            <legend>Grocery</legend>
             <div class="form-group">
-                <label for="ntuc">NTUC</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                <legend>Bill</legend>
+                <label for="bill" hidden>Bill</label>
+                <input type="number" class="form-control" placeholder="Amount you spent every month">
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <legend>Dining</legend>
+                <label for="dining" hidden>Dining</label>
+                <input type="number" class="form-control" placeholder="Amount you spent every month">
             </div>
-            <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            <div class="form-group">
+                <legend>Entertainment</legend>
+                <label for="entertainment" hidden>Entertainment</label>
+                <input type="number" class="form-control" placeholder="Amount you spent every month">
+            </div>
+            <div class="form-group">
+                <legend>Foreign Currency Spending (converted to SGD)</legend>
+                <label for="foreign" hidden>Foreign Currency Spending (converted to SGD)</label>
+                <input type="number" class="form-control" placeholder="Amount you spent every month">
+            </div>
+            <div class="form-group">
+                <legend>Retail Shopping</legend>
+                <label for="retail_shopping" hidden>Retail Shopping</label>
+                <input type="number" class="form-control" placeholder="Amount you spent every month">
+            </div>
+            <div class="form-group">
+                <legend>Transport</legend>
+                <label for="transport" hidden>Transport</label>
+                <input type="number" class="form-control" placeholder="Amount you spent every month">
             </div>
         </fieldset>
 
-    <!-- Grocery -->
-    <fieldset class="form-group">
-      <legend>Preferred Bank Rank (1 is most preferable, no repeating number; 1 to 8) </legend>
-      <div class="form-group row">
-        <label for="DBS" class="col-sm-2 col-form-label">DBS</label>
-        <div class="col-sm-6">
-          <input type="number" class="form-control" name="preferred_bank_rank" id="preferredBankRank" placeholder="1 is most preferable">
-        </div>
-      </div><!-- form-group row-->
-      <div class="form-group row">
-        <label for="OCBC" class="col-sm-2 col-form-label">OCBC</label>
-        <div class="col-sm-6">
-          <input type="number" class="form-control" name="preferred_bank_rank" id="preferredBankRank" placeholder="1 is most preferable">
-        </div>
-      </div><!-- form-group row-->
-      <div class="form-group row">
-        <label for="HSBC" class="col-sm-2 col-form-label">HSBC</label>
-        <div class="col-sm-6">
-          <input type="number" class="form-control" name="preferred_bank_rank" id="preferredBankRank" placeholder="1 is most preferable">
-        </div>
-      </div><!-- form-group row-->
-      <div class="form-group row">
-        <label for="Citibank" class="col-sm-2 col-form-label">Citibank</label>
-        <div class="col-sm-6">
-          <input type="number" class="form-control" name="preferred_bank_rank" id="preferredBankRank" placeholder="1 is most preferable">
-        </div>
-      </div><!-- form-group row-->
-      <div class="form-group row">
-        <label for="Maybank" class="col-sm-2 col-form-label">Maybank</label>
-        <div class="col-sm-6">
-          <input type="number" class="form-control" name="preferred_bank_rank" id="preferredBankRank" placeholder="1 is most preferable">
-        </div>
-      </div><!-- form-group row-->
-      <div class="form-group row">
-        <label for="UOB" class="col-sm-2 col-form-label">UOB</label>
-        <div class="col-sm-6">
-          <input type="number" class="form-control" name="preferred_bank_rank" id="preferredBankRank" placeholder="1 is most preferable">
-        </div>
-      </div><!-- form-group row-->
-      <div class="form-group row">
-        <label for="Standard Chartered" class="col-sm-2 col-form-label">Standard Chartered</label>
-        <div class="col-sm-6">
-          <input type="number" class="form-control" name="preferred_bank_rank" id="preferredBankRank" placeholder="1 is most preferable">
-        </div>
-      </div><!-- form-group row-->
-    </fieldset>
+        <!-- Grocery -->
+        <fieldset class="form-group">
+          <legend>Grocery</legend>
+          <div class="form-group row">
+            <label for="ntuc" class="col-sm-2 col-form-label">NTUC</label>
+            <div class="col-sm-6">
+              <input type="number" class="form-control" name="preferred_bank_rank" id="preferredBankRank" placeholder="Amount you spent every month">
+            </div>
+          </div><!-- form-group row-->
+          <div class="form-group row">
+            <label for="sheng_siong" class="col-sm-2 col-form-label">Sheng Siong</label>
+            <div class="col-sm-6">
+              <input type="number" class="form-control" name="preferred_bank_rank" id="preferredBankRank" placeholder="Amount you spent every month">
+            </div>
+          </div><!-- form-group row-->
+          <div class="form-group row">
+            <label for="cold_storage" class="col-sm-2 col-form-label">Cold Storage</label>
+            <div class="col-sm-6">
+              <input type="number" class="form-control" name="preferred_bank_rank" id="preferredBankRank" placeholder="Amount you spent every month">
+            </div>
+          </div><!-- form-group row-->
+          <div class="form-group row">
+            <label for="giant" class="col-sm-2 col-form-label">Giant</label>
+            <div class="col-sm-6">
+              <input type="number" class="form-control" name="preferred_bank_rank" id="preferredBankRank" placeholder="Amount you spent every month">
+            </div>
+          </div><!-- form-group row-->
+        </fieldset>
 
+        <!-- Petrol -->
+        <fieldset class="form-group">
+          <legend>Petrol</legend>
+          <div class="form-group row">
+            <label for="esso" class="col-sm-2 col-form-label">Esso</label>
+            <div class="col-sm-6">
+              <input type="number" class="form-control" name="preferred_bank_rank" id="preferredBankRank" placeholder="Amount you spent every month">
+            </div>
+          </div><!-- form-group row-->
+          <div class="form-group row">
+            <label for="caltex" class="col-sm-2 col-form-label">Caltex</label>
+            <div class="col-sm-6">
+              <input type="number" class="form-control" name="preferred_bank_rank" id="preferredBankRank" placeholder="Amount you spent every month">
+            </div>
+          </div><!-- form-group row-->
+          <div class="form-group row">
+            <label for="shell" class="col-sm-2 col-form-label">Shell</label>
+            <div class="col-sm-6">
+              <input type="number" class="form-control" name="preferred_bank_rank" id="preferredBankRank" placeholder="Amount you spent every month">
+            </div>
+          </div><!-- form-group row-->
+          <div class="form-group row">
+            <label for="others" class="col-sm-2 col-form-label">Others</label>
+            <div class="col-sm-6">
+              <input type="number" class="form-control" name="preferred_bank_rank" id="preferredBankRank" placeholder="Amount you spent every month">
+            </div>
+          </div><!-- form-group row-->
+        </fieldset>
 
+        <!-- Online Shopping -->
+        <fieldset class="form-group">
+          <legend>Online Shopping</legend>
+          <div class="form-group row">
+            <label for="hotel_and_flight" class="col-sm-2 col-form-label">Hotel and Flight</label>
+            <div class="col-sm-6">
+              <input type="number" class="form-control" name="preferred_bank_rank" id="preferredBankRank" placeholder="Amount you spent every month">
+            </div>
+          </div><!-- form-group row-->
+          <div class="form-group row">
+            <label for="others" class="col-sm-2 col-form-label">Others</label>
+            <div class="col-sm-6">
+              <input type="number" class="form-control" name="preferred_bank_rank" id="preferredBankRank" placeholder="Amount you spent every month">
+            </div>
+          </div><!-- form-group row-->
+        </fieldset>
 
 <!--         {% for field in user_form %}
         <tr>
@@ -103,6 +145,9 @@
   </form>
 </div><!-- content container -->
 
+<script src={% static "Recommender/vendor/jquery/jquery-3.2.1.min.js" %}></script>
+<script src={% static "Recommender/vendor/bootstrap/js/popper.js" %}></script>
+<script src={% static "Recommender/vendor/bootstrap/js/bootstrap.min.js" %}></script>
 
 </body>
 </html>
