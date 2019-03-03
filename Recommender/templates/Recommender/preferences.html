@@ -13,12 +13,13 @@
     {% csrf_token %}
     <!-- preferred_bank_rank --> <!-- TODO -->
     <div class="form-group">
-      <label for="annualIncome">preferred_bank_rank</label>
-      <input type="text" class="form-control" name="preferred_bank_rank" id="preferred_bank_rank" placeholder="Enter email">
-    </div>
+      <label for="annualIncome">Preferred Bank Rank TODO</label>
+      <input type="text" class="form-control" name="preferred_bank_rank" id="preferredBankRank" placeholder="Enter email">
+    </div><!-- form-group -->
+
     <!-- preferred_card_type -->
     <div class="form-group">
-        <label for="annualIncome">preferred_card_type</label><br>
+        <label for="annualIncome">Preferred Card Payment Network</label><br>
         <div class="form-check form-check-inline" name="preferred_card_type">
           <input class="form-check-input" type="checkbox" name="preferred_card_type" id="inlineCheckbox1" value="visa">
           <label class="form-check-label" for="inlineCheckbox1">Visa</label>
@@ -35,29 +36,31 @@
           <input class="form-check-input" type="checkbox" name="preferred_card_type" id="inlineCheckbox3" value="jcb">
           <label class="form-check-label" for="inlineCheckbox3">JCB</label>
         </div>
-    <div class="form-group">
+    </div><!-- form-group -->
+
     <!-- preferred_rewards_type -->
     <div class="form-group">
-        <label for="preferred_rewards_type">preferred_rewards_type</label><br>
+        <label for="preferred_rewards_type">Preferred Rewards Type</label><br>
         <div class="form-check form-check-inline" name="preferred_rewards_type">
           <input class="form-check-input" type="checkbox" name="preferred_rewards_type" id="inlineCheckbox1" value="cashback">
-          <label class="form-check-label" for="inlineCheckbox1">Cashback</label>
+          <label class="form-check-label" for="chashback">Cashback</label>
         </div>
         <div class="form-check form-check-inline" name="preferred_rewards_type">
           <input class="form-check-input" type="checkbox" name="preferred_rewards_type" id="inlineCheckbox2" value="miles">
-          <label class="form-check-label" for="inlineCheckbox2">Miles</label>
+          <label class="form-check-label" for="miles">Miles</label>
         </div>
         <div class="form-check form-check-inline" name="preferred_rewards_type">
           <input class="form-check-input" type="checkbox" name="preferred_rewards_type" id="inlineCheckbox3" value="points">
-          <label class="form-check-label" for="inlineCheckbox3">Rewards</label>
+          <label class="form-check-label" for="rewards">Rewards</label>
         </div>
-    </div>
+    </div><!-- form-group -->
+
     <!-- preferred_rewards_type 2-->
-    <div class="form-group">
-        <label for="preferred_rewards_type">preferred_rewards_type</label><br>
+<!--     <div class="form-group">
+        <label for="preferred_rewards_type">Preferred Rewards Type</label><br>
         <div class="form-check form-check-inline" name="preferred_rewards_type">
           <input class="form-check-input" type="checkbox" name="preferred_rewards_type" id="inlineCheckbox1" value="cashback">
-          <label class="form-check-label" for="inlineCheckbox1">Cashback</label>
+          <label class="form-check-label" for="cashback">Cashback</label>
         </div>
         <div class="form-check form-check-inline" name="preferred_rewards_type">
           <input class="form-check-input" type="checkbox" name="preferred_rewards_type" id="inlineCheckbox2" value="miles">
@@ -66,9 +69,9 @@
         <div class="form-check form-check-inline" name="preferred_rewards_type">
           <input class="form-check-input" type="checkbox" name="preferred_rewards_type" id="inlineCheckbox3" value="points">
           <label class="form-check-label" for="inlineCheckbox3">Rewards</label>
-        </div>
-    </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        </div> -->
+    <!-- </div>form-group -->
+        <button type="submit" class="btn btn-primary">Next</button>
   </form>
 </div><!-- content container -->
 </body>

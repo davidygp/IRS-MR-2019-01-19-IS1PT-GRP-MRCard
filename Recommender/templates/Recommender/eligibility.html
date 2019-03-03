@@ -15,7 +15,7 @@
       <!-- income -->
       <div class="form-group">
         <label for="annualIncome">Annual Income</label>
-        <input type="text" class="form-control" name="annual_income" id="annualIncome" placeholder="Your Annual Income" required>
+        <input type="number" class="form-control" name="annual_income" id="annualIncome" placeholder="Your Annual Income" required>
       </div><!-- form-group -->
 
       <!-- age -->
@@ -28,18 +28,18 @@
       <div class="form-group">
         <label class="d-block">Gender</label>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+          <input class="form-check-input" type="radio" name="gender" id="female" value="female" required>
           <label class="form-check-label" for="female">female</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="gender" id="male" value="male">
+          <input class="form-check-input" type="radio" name="gender" id="male" value="male" required>
           <label class="form-check-label" for="male">male</label>
         </div>
       </div><!-- form-group -->
 
       <!-- citizenship -->
       <div class="form-group">
-        <select class="form-control requried" name="citizenship">
+        <select class="form-control requried" name="citizenship" required>
           <option value="">Please Chooses</option>
           <option value="singaporean">Singaporean</option>
           <option value="pr">Permanent Resident</option>
@@ -52,10 +52,11 @@
       <!-- spending -->
       <div class="form-group">
         <label for="age">Annual Spending Amount</label>
-        <input type="number" class="form-control" name="total_spending_amount" id="totalSpendingAmount" placeholder="Annual Spending Amount">
+        <input type="number" class="form-control" name="total_spending_amount" id="totalSpendingAmount" placeholder="Annual Spending Amount" required>
       </div>
     </fieldset>
-    <button type="submit" class="btn btn-primary">Submit</button>
+
+    <button type="submit" class="btn btn-primary">Next</button>
   </form><!-- form-action -->
 </div><!-- content container -->
 
