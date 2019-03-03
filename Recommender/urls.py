@@ -8,7 +8,9 @@ urlpatterns = [
     path('preferences/', views.preferences, name='preferences'),
     path('spending_checkbox/', views.spending_checkbox, name='spending_checkbox'),
     path('spending_amount/', views.spending_amount, name='spending_amount'),
-    path('spending/', views.spending, name='spending'),
-    path('bank/', views.bank, name='bank'),
-    path('end/', views.end, name='end')
+    path('recommendation/', views.recommendation, name='recommendation'),
+    path('no_recommendation/', views.no_recommendation, name='no_recommendation')
+    #path('spending/', views.spending, name='spending'),
+    #path('bank/', views.bank, name='bank'),
+    #path('end/', views.end, name='end')
 ]
