@@ -1,76 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<style>
-.lead {
-    font-size: 1.25rem;
-    font-weight: 300;
-}
-</style>
 <head>
     {% load static %}
     <link rel="stylesheet" type="text/css" href={% static "Recommender/vendor/bootstrap/css/bootstrap.min.css" %}>
     <meta charset="UTF-8">
     <title>Eligibility</title>
+    <style>
+        /*web background*/
+        .container{
+            display:table;
+            height:100%;
+        }
+
+        .row{
+            display: table-cell;
+            vertical-align: middle;
+        }
+        /* centered columns styles */
+        .row-centered {
+            text-align:center;
+        }
+        .col-centered {
+            display:inline-block;
+            float:none;
+            text-align:left;
+            margin-right:-4px;
+        }
+    </style>
 </head>
-
 <body>
-    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-      <h1 class="display-4">Recommendation</h1>
-      <p class="lead">Here is the credit cards we recommend to you based on you spending habits.</p>
-    </div>
-<div class="container">
-      <div class="card-deck mb-3 text-center">
-        <div class="card mb-4 box-shadow">
-          <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Based on Your Choice</h4>
-          </div>
-          <div class="card-body">
-            <h1 class="card-title pricing-card-title">$0 <small class="text-muted">/ mo</small></h1>
-            <ul class="list-unstyled mt-3 mb-4">
-              <li>10 users included</li>
-              <li>2 GB of storage</li>
-              <li>Email support</li>
-              <li>Help center access</li>
-            </ul>
-            <button type="button" class="btn btn-lg btn-block btn-outline-primary">Apply</button>
-          </div>
+
+<div class="container mt-4">
+    <div class="row row-centered">
+        <div class="well col-md-6 col-centered">
+            <h1 class="text-white bg-primary">Oops...</h1>
+            <h3>Sorry you are not eligible for any Credit Cards.</h3>
+{#            <h2>Thank you</h2>#}
         </div>
-        <div class="card mb-4 box-shadow">
-          <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Ideal Card</h4>
-          </div>
-          <div class="card-body">
-            <h1 class="card-title pricing-card-title">$15 <small class="text-muted">/ mo</small></h1>
-            <ul class="list-unstyled mt-3 mb-4">
-              <li>20 users included</li>
-              <li>10 GB of storage</li>
-              <li>Priority email support</li>
-              <li>Help center access</li>
-            </ul>
-            <button type="button" class="btn btn-lg btn-block btn-outline-primary">Apply</button>
-          </div>
-        </div>
-<!--         <div class="card mb-4 box-shadow">
-          <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Enterprise</h4>
-          </div>
-          <div class="card-body">
-            <h1 class="card-title pricing-card-title">$29 <small class="text-muted">/ mo</small></h1>
-            <ul class="list-unstyled mt-3 mb-4">
-              <li>30 users included</li>
-              <li>15 GB of storage</li>
-              <li>Phone and email support</li>
-              <li>Help center access</li>
-            </ul>
-            <button type="button" class="btn btn-lg btn-block btn-primary">Contact us</button>
-          </div>
-        </div>
-      </div> -->
 
     </div>
+</div>
+
 
 <script src={% static "Recommender/vendor/jquery/jquery-3.2.1.min.js" %}></script>
 <script src={% static "Recommender/vendor/bootstrap/js/popper.js" %}></script>
 <script src={% static "Recommender/vendor/bootstrap/js/bootstrap.min.js" %}></script>
-
 </body>

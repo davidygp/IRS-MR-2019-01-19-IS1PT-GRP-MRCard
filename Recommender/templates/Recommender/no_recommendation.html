@@ -1,3 +1,48 @@
-<p>Sorry you are not eligible for any Credit Cards</p><br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href={% static "Recommender/vendor/bootstrap/css/bootstrap.min.css" %}>
+    <meta charset="UTF-8">
+    <title>Eligibility</title>
+    <style>
+        /*web background*/
+        .container{
+            display:table;
+            height:100%;
+        }
 
-Thank You<br>
+        .row{
+            display: table-cell;
+            vertical-align: middle;
+        }
+        /* centered columns styles */
+        .row-centered {
+            text-align:center;
+        }
+        .col-centered {
+            display:inline-block;
+            float:none;
+            text-align:left;
+            margin-right:-4px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-4">
+    <div class="row row-centered">
+        <div class="well col-md-6 col-centered">
+            <h1 class="text-white bg-primary">Oops...</h1>
+            <h3>Sorry you are not eligible for any Credit Cards.</h3>
+{#            <h2>Thank you</h2>#}
+        </div>
+
+    </div>
+</div>
+
+
+<script src={% static "Recommender/vendor/jquery/jquery-3.2.1.min.js" %}></script>
+<script src={% static "Recommender/vendor/bootstrap/js/popper.js" %}></script>
+<script src={% static "Recommender/vendor/bootstrap/js/bootstrap.min.js" %}></script>
+</body>
