@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
     {% load static %}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href={% static "Recommender/vendor/bootstrap/css/bootstrap.min.css" %}>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Eligibility</title>
 </head>
+
 <body>
 <div class="container">
   <form action="{% url 'Recommender:preferences' %}" method="post">
@@ -14,13 +15,13 @@
       <!-- income -->
       <div class="form-group">
         <label for="annualIncome">Annual Income</label>
-        <input type="text" class="form-control" name="annual_income" id="annualIncome" placeholder="Your Annual Income">
+        <input type="text" class="form-control" name="annual_income" id="annualIncome" placeholder="Your Annual Income" required>
       </div><!-- form-group -->
 
       <!-- age -->
       <div class="form-group">
         <label for="age">Age</label>
-        <input type="number" class="form-control" name="age" id="age" placeholder="Your Age">
+        <input type="number" class="form-control" name="age" id="age" placeholder="Your Age" required data-error-msg="Age number is in valid format!">
       </div><!-- form-group -->
 
       <!-- gender -->
@@ -55,14 +56,12 @@
       </div>
     </fieldset>
     <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+  </form><!-- form-action -->
 </div><!-- content container -->
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<!-- <script src="js/jquery.slim.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script> -->
+<script src={% static "Recommender/vendor/jquery/jquery-3.2.1.min.js" %}></script>
+<script src={% static "Recommender/vendor/bootstrap/js/popper.js" %}></script>
+<script src={% static "Recommender/vendor/bootstrap/js/bootstrap.min.js" %}></script>
+
 </body>
 </html>
