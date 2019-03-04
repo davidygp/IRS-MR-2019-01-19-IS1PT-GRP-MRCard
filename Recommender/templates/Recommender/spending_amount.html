@@ -47,7 +47,7 @@
             <div class="form-group">
                 <legend>Retail Shopping</legend>
                 <label for="retail_shopping" hidden>Retail Shopping</label>
-                <input type="number" class="form-control" name="retail_spending" placeholder="Amount you spent every month">
+                <input type="number" class="form-control" name="retail_shopping_spending" placeholder="Amount you spent every month">
             </div>
           {% endif %}
           {% if spending == 'transport' %}
@@ -85,6 +85,12 @@
             <label for="giant" class="col-sm-2 col-form-label">Giant</label>
             <div class="col-sm-6">
               <input type="number" class="form-control" name="groceries_giant_spending" placeholder="Amount you spent every month">
+            </div>
+          </div><!-- form-group row-->
+          <div class="form-group row">
+            <label for="others" class="col-sm-2 col-form-label">others</label>
+            <div class="col-sm-6">
+              <input type="number" class="form-control" name="groceries_others_spending" placeholder="Amount you spent every month">
             </div>
           </div><!-- form-group row-->
         </fieldset>
