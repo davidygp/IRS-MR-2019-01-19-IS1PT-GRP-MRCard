@@ -14,52 +14,38 @@
   <form action="{% url 'Recommender:spending_checkbox' %}" method="post">
     {% csrf_token %}
 
-    <!-- preferred_bank_rank -->
-    <fieldset class="form-group">
-      <legend>Preferred Bank Rank (1 is most preferable, no repeating number; 1 to 8) </legend>
-      <div class="form-group row">
-        <label for="DBS" class="col-sm-2 col-form-label">DBS</label>
-        <div class="col-sm-6">
-          <input type="number" class="form-control" name="preferred_bank_rank" id="preferredBankRank" placeholder="1 is most preferable">
+    <!-- preferred_bank -->
+    <div class="form-group">
+        <label for="preferredBank">Preferred Bank</label><br>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" name="preferred_bank" value="dbs">
+          <label class="form-check-label" for="inlineCheckbox1">DBS</label>
         </div>
-      </div><!-- form-group row-->
-      <div class="form-group row">
-        <label for="OCBC" class="col-sm-2 col-form-label">OCBC</label>
-        <div class="col-sm-6">
-          <input type="number" class="form-control" name="preferred_bank_rank" id="preferredBankRank" placeholder="1 is most preferable">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" name="preferred_bank" value="ocbc">
+          <label class="form-check-label" for="inlineCheckbox2">OCBC</label>
         </div>
-      </div><!-- form-group row-->
-      <div class="form-group row">
-        <label for="HSBC" class="col-sm-2 col-form-label">HSBC</label>
-        <div class="col-sm-6">
-          <input type="number" class="form-control" name="preferred_bank_rank" id="preferredBankRank" placeholder="1 is most preferable">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" name="preferred_bank" value="hsbc">
+          <label class="form-check-label" for="inlineCheckbox3">HSBC</label>
         </div>
-      </div><!-- form-group row-->
-      <div class="form-group row">
-        <label for="Citibank" class="col-sm-2 col-form-label">Citibank</label>
-        <div class="col-sm-6">
-          <input type="number" class="form-control" name="preferred_bank_rank" id="preferredBankRank" placeholder="1 is most preferable">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" name="preferred_bank" value="citibank">
+          <label class="form-check-label" for="inlineCheckbox3">Citibank</label>
         </div>
-      </div><!-- form-group row-->
-      <div class="form-group row">
-        <label for="Maybank" class="col-sm-2 col-form-label">Maybank</label>
-        <div class="col-sm-6">
-          <input type="number" class="form-control" name="preferred_bank_rank" id="preferredBankRank" placeholder="1 is most preferable">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" name="preferred_bank" value="maybank">
+          <label class="form-check-label" for="inlineCheckbox3">Maybank</label>
         </div>
-      </div><!-- form-group row-->
-      <div class="form-group row">
-        <label for="UOB" class="col-sm-2 col-form-label">UOB</label>
-        <div class="col-sm-6">
-          <input type="number" class="form-control" name="preferred_bank_rank" id="preferredBankRank" placeholder="1 is most preferable">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" name="preferred_bank" value="uob">
+          <label class="form-check-label" for="inlineCheckbox3">UOB</label>
         </div>
-      </div><!-- form-group row-->
-      <div class="form-group row">
-        <label for="Standard Chartered" class="col-sm-2 col-form-label">Standard Chartered</label>
-        <div class="col-sm-6">
-          <input type="number" class="form-control" name="preferred_bank_rank" id="preferredBankRank" placeholder="1 is most preferable">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" name="preferred_bank" value="standard chartered">
+          <label class="form-check-label" for="inlineCheckbox3">Standard Chartered</label>
         </div>
-      </div><!-- form-group row-->
-    </fieldset>
+    </div><!-- form-group -->
 
     <!-- preferred_card_type -->
     <div class="form-group">
