@@ -1,8 +1,50 @@
 {% extends "Recommender/base.html" %}
+{% block css %}
+    <style>
+        .lead {
+            font-size: 1.25rem;
+            font-weight: 300;
+        }
+    </style>
+{% endblock %}
 
 {% block form %}
 <div class="pricing-header px-3 py-3 pt-md-0 pb-md-4 mt-2 mx-auto text-center">
-    <h1 class="display-4 mb-5">Oops...</h1>
-    <p class="lead">Sorry you are not eligible for any Credit Cards.</p>
+    <h1 class="display-4">Recommendation</h1>
+    <p class="lead">Here is the credit cards we recommend to you based on you spending habits.</p>
 </div>
+<div class="container">
+    <div class="card-deck text-center">
+        <div class="card mb-6 box-shadow">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">Based on Your Choice</h4>
+            </div>
+            <div class="my-card-body">
+                <h1 class="card-title pricing-card-title">{{ preferred_credit_card }}</h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>{{ preferred_cashback_amount }}</li>
+                    <li>{{ preferred_miles_amount }}</li>
+                    <li>{{ preferred_points_amount }}</li>
+                </ul>
+                <button type="button" class="my-btn my-btn-lg my-btn-block my-btn-outline-primary" onclick="location.href='http://www.google.com'">Apply
+                </button>
+            </div>
+        </div>
+        <div class="card mb-6 box-shadow">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">Ideal Card</h4>
+            </div>
+            <div class="my-card-body">
+                <h1 class="card-title pricing-card-title">{{ ideal_credit_card }}</h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>{{ ideal_cashback_amount }}</li>
+                    <li>{{ ideal_miles_amount }}</li>
+                    <li>{{ ideal_points_amount }}</li>
+                </ul>
+                <button type="button" class="my-btn my-btn-lg my-btn-block my-btn-outline-primary" onclick="location.href='http://www.google.com'">Apply</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
