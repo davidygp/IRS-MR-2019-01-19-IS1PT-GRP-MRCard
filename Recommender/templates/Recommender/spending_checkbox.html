@@ -1,7 +1,7 @@
 {% extends "Recommender/base.html" %}
 
 {% block form %}
-  <form action="{% url 'Recommender:spending_amount' %}" method="post">
+<form action="{% url 'Recommender:spending_amount' %}" method="post">
     {% csrf_token %}
     <div class="form-row">
       <div class="name">What do you pay by credit cards</div>
