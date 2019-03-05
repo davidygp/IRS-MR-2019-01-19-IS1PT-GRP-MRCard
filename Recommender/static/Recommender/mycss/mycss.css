@@ -72,3 +72,4 @@
 .my-btn-outline-primary:not(:disabled):not(.disabled):active:focus, .my-btn-outline-primary:not(:disabled):not(.disabled).active:focus,
 .show > .my-btn-outline-primary.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
