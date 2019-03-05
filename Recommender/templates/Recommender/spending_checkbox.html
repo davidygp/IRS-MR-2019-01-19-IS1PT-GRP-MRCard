@@ -1,67 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% load static %}
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href={% static "Recommender/vendor/bootstrap/css/bootstrap.min.css" %}>
-    <title>Spending Type</title>
-</head>
+{% extends "Recommender/base.html" %}
 
-<body>
-<div class="container">
+{% block form %}
   <form action="{% url 'Recommender:spending_amount' %}" method="post">
     {% csrf_token %}
+    <div class="form-row">
+      <div class="name">What do you pay by credit cards</div>
+      	<div class="value">
+		    <div class="form-check form-check" name="bill_checkbox">
+		      <input class="form-check-input" type="checkbox" name="bill_checkbox" id="inlineCheckbox1" value="1">
+		      <label class="form-check-label" for="bill">Bill</label>
+		    </div>
+		    <div class="form-check form-check" name="dining_checkbox">
+		      <input class="form-check-input" type="checkbox" name="dining_checkbox" id="inlineCheckbox2" value="1">
+		      <label class="form-check-label" for="dining">Dining</label>
+		    </div>
+		    <div class="form-check form-check" name="entertainment_checkbox">
+		      <input class="form-check-input" type="checkbox" name="entertainment_checkbox" id="inlineCheckbox3" value="1">
+		      <label class="form-check-label" for="entertainment">Entertainment</label>
+		    </div>
+		    <div class="form-check form-check" name="foreign_checkbox">
+		      <input class="form-check-input" type="checkbox" name="foreign_checkbox" id="inlineCheckbox4" value="1">
+		      <label class="form-check-label" for="foreign">Foreign</label>
+		    </div>
+		    <div class="form-check form-check" name="grocery_checkbox">
+		      <input class="form-check-input" type="checkbox" name="grocery_checkbox" id="inlineCheckbox5" value="1">
+		      <label class="form-check-label" for="grocery">Grocery</label>
+		    </div>
+		    <div class="form-check form-check" name="online_checkbox">
+		      <input class="form-check-input" type="checkbox" name="online_checkbox" id="inlineCheckbox6" value="1">
+		      <label class="form-check-label" for="online">Online</label>
+		    </div>
+		    <div class="form-check form-check" name="petrol_checkbox">
+		      <input class="form-check-input" type="checkbox" name="petrol_checkbox" id="inlineCheckbox7" value="1">
+		      <label class="form-check-label" for="petrol">Petrol</label>
+		    </div>
+		    <div class="form-check form-check" name="retail_shopping_checkbox">
+		      <input class="form-check-input" type="checkbox" name="retail_shopping_checkbox" id="inlineCheckbox8" value="1">
+		      <label class="form-check-label" for="retail">Retail</label>
+		    </div>
+		    <div class="form-check form-check" name="transport_checkbox">
+		      <input class="form-check-input" type="checkbox" name="transport_checkbox" id="inlineCheckbox9" value="1">
+		      <label class="form-check-label" for="transport">Transport</label>
+		    </div>
+		</div>
+	</div>
 
-    <!-- preferred_card_type -->
-    <div class="form-group">
-        <label for="spending_checkbox">What do you pay by credit cards</label><br>
-        <div class="form-check form-check" name="bill_checkbox">
-          <input class="form-check-input" type="checkbox" name="bill_checkbox" id="inlineCheckbox1" value="1">
-          <label class="form-check-label" for="bill">Bill</label>
-        </div>
-        <div class="form-check form-check" name="dining_checkbox">
-          <input class="form-check-input" type="checkbox" name="dining_checkbox" id="inlineCheckbox2" value="1">
-          <label class="form-check-label" for="dining">Dining</label>
-        </div>
-        <div class="form-check form-check" name="entertainment_checkbox">
-          <input class="form-check-input" type="checkbox" name="entertainment_checkbox" id="inlineCheckbox3" value="1">
-          <label class="form-check-label" for="entertainment">Entertainment</label>
-        </div>
-        <div class="form-check form-check" name="foreign_checkbox">
-          <input class="form-check-input" type="checkbox" name="foreign_checkbox" id="inlineCheckbox4" value="1">
-          <label class="form-check-label" for="foreign">Foreign</label>
-        </div>
-        <div class="form-check form-check" name="grocery_checkbox">
-          <input class="form-check-input" type="checkbox" name="grocery_checkbox" id="inlineCheckbox5" value="1">
-          <label class="form-check-label" for="grocery">Grocery</label>
-        </div>
-        <div class="form-check form-check" name="online_checkbox">
-          <input class="form-check-input" type="checkbox" name="online_checkbox" id="inlineCheckbox6" value="1">
-          <label class="form-check-label" for="online">Online</label>
-        </div>
-        <div class="form-check form-check" name="petrol_checkbox">
-          <input class="form-check-input" type="checkbox" name="petrol_checkbox" id="inlineCheckbox7" value="1">
-          <label class="form-check-label" for="petrol">Petrol</label>
-        </div>
-        <div class="form-check form-check" name="retail_shopping_checkbox">
-          <input class="form-check-input" type="checkbox" name="retail_shopping_checkbox" id="inlineCheckbox8" value="1">
-          <label class="form-check-label" for="retail">Retail</label>
-        </div>
-        <div class="form-check form-check" name="transport_checkbox">
-          <input class="form-check-input" type="checkbox" name="transport_checkbox" id="inlineCheckbox9" value="1">
-          <label class="form-check-label" for="transport">Transport</label>
-        </div>
-    </div><!-- form-group -->
-
-    <button type="submit" class="btn btn-primary">Next</button>
-  </form>
-</div><!-- content container -->
-
-<script src={% static "Recommender/vendor/jquery/jquery-3.2.1.min.js" %}></script>
-<script src={% static "Recommender/vendor/bootstrap/js/popper.js" %}></script>
-<script src={% static "Recommender/vendor/bootstrap/js/bootstrap.min.js" %}></script>
-
-</body>
-</html>
+    <div class="text-right">
+        <button class="btn btn--radius-2 btn--red" type="submit">Next</button>
+    </div>
+</form>
+{% endblock %}

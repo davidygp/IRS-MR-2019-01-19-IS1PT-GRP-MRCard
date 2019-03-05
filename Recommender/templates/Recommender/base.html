@@ -17,11 +17,17 @@
     <link href=https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
 
     <!-- Vendor CSS-->
+    <link href="{% static 'Recommender/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'Recommender/vendor/select2/select2.min.css' %}" rel="stylesheet" media="all">
     <link href="{% static 'Recommender/vendor/datepicker/daterangepicker.css' %}" rel="stylesheet" media="all">
 
     <!-- Main CSS-->
     <link href="{% static 'Recommender/css/main.css' %}" rel="stylesheet" media="all">
+    {% block css %}{% endblock %}
+
+    <!-- My CSS -->
+    <link href="{% static 'Recommender/mycss/mycss.css' %}" rel="stylesheet">
+
 </head>
 
 <body>
@@ -29,7 +35,7 @@
         <div class="wrapper wrapper--w790">
             <div class="card card-5">
                 <div class="card-heading">
-                    <h2 class="title">{% block formtitle %}Information Form{% endblock %}</h2>
+                    <h2 class="title">{% block formtitle %}MRCard Form{% endblock %}</h2>
                 </div>
                 <div class="card-body">
                     {% block form %}

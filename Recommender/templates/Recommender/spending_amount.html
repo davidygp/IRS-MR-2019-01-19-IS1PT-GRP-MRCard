@@ -1,60 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% load static %}
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href={% static "Recommender/vendor/bootstrap/css/bootstrap.min.css" %}>
-    <title>Spending Amount</title>
-</head>
+{% extends "Recommender/base.html" %}
 
-<body>
-<div class="container">
+{% block form %}
   <form action="{% url 'Recommender:recommendation' %}" method="post">
     {% csrf_token %}
         {% for spending in eligible_spending %}
         <fieldset class="form-group">
           {% if spending == 'bill' %}
-            <div class="form-group">
-                <legend>Bill</legend>
-                <label for="bill" hidden>Bill</label>
-                <input type="number" class="form-control" name="bill_spending" placeholder="Amount you spent every month">
+            <div class="form-row">
+              <div class="name">Bill</div>
+                <div class="value">
+                  <input class="input--style-5" type="number" name="bill_spending" placeholder="Amount you spent every month">
+                </div>
             </div>
           {% endif %}
           {% if spending == 'dining' %}
-            <div class="form-group">
-                <legend>Dining</legend>
-                <label for="dining" hidden>Dining</label>
-                <input type="number" class="form-control" name="dining_spending" placeholder="Amount you spent every month">
+            <div class="form-row">
+              <div class="name">Dining</div>
+                <div class="value">
+                  <input class="input--style-5" type="number" name="dining_spending" placeholder="Amount you spent every month">
+                </div>
             </div>
           {% endif %}
           {% if spending == 'entertainment' %}
-            <div class="form-group">
-                <legend>Entertainment</legend>
-                <label for="entertainment" hidden>Entertainment</label>
-                <input type="number" class="form-control" name="entertainment_spending" placeholder="Amount you spent every month">
+            <div class="form-row">
+              <div class="name">Entertainment</div>
+                <div class="value">
+                  <input class="input--style-5" type="number" name="entertainment_spending" placeholder="Amount you spent every month">
+                </div>
             </div>
           {% endif %}
           {% if spending == 'foreign' %}
-            <div class="form-group">
-                <legend>Foreign Currency Spending (converted to SGD)</legend>
-                <label for="foreign" hidden>Foreign Currency Spending (converted to SGD)</label>
-                <input type="number" class="form-control" name="foreign_spending" placeholder="Amount you spent every month">
+            <div class="form-row">
+              <div class="name">Foreign Currency Spending (converted to SGD)</div>
+                <div class="value">
+                  <input class="input--style-5" type="number" name="foreign_spending" placeholder="Amount you spent every month">
+                </div>
             </div>
           {% endif %}
           {% if spending == 'retail' %}
-            <div class="form-group">
-                <legend>Retail Shopping</legend>
-                <label for="retail_shopping" hidden>Retail Shopping</label>
-                <input type="number" class="form-control" name="retail_shopping_spending" placeholder="Amount you spent every month">
+            <div class="form-row">
+              <div class="name">Retail Shopping</div>
+                <div class="value">
+                  <input class="input--style-5" type="number" name="retail_shopping_spending" placeholder="Amount you spent every month">
+                </div>
             </div>
           {% endif %}
           {% if spending == 'transport' %}
-            <div class="form-group">
-                <legend>Transport</legend>
-                <label for="transport" hidden>Transport</label>
-                <input type="number" class="form-control" name="transport_spending" placeholder="Amount you spent every month">
+            <div class="form-row">
+              <div class="name">Transport</div>
+                <div class="value">
+                  <input class="input--style-5" type="number" name="transport_spending" placeholder="Amount you spent every month">
+                </div>
             </div>
           {% endif %}
         </fieldset>
@@ -62,44 +58,46 @@
         <!-- Grocery -->
         {% if spending == 'grocery' %}
         <fieldset class="form-group">
-          <legend>Grocery</legend>
-          <div class="form-group row">
-            <label for="ntuc" class="col-sm-2 col-form-label">NTUC</label>
-            <div class="col-sm-6">
-              <input type="number" class="form-control" name="groceries_ntuc_spending" placeholder="Amount you spent every month">
-            </div>
-          </div><!-- form-group row-->
-          <div class="form-group row">
-            <label for="sheng_siong" class="col-sm-2 col-form-label">Sheng Siong</label>
-            <div class="col-sm-6">
-              <input type="number" class="form-control" name="groceries_sheng_siong_spending" placeholder="Amount you spent every month">
-            </div>
-          </div><!-- form-group row-->
-          <div class="form-group row">
-            <label for="cold_storage" class="col-sm-2 col-form-label">Cold Storage</label>
-            <div class="col-sm-6">
-              <input type="number" class="form-control" name="groceries_cold_storage_spending" placeholder="Amount you spent every month">
-            </div>
-          </div><!-- form-group row-->
-          <div class="form-group row">
-            <label for="giant" class="col-sm-2 col-form-label">Giant</label>
-            <div class="col-sm-6">
-              <input type="number" class="form-control" name="groceries_giant_spending" placeholder="Amount you spent every month">
-            </div>
-          </div><!-- form-group row-->
-          <div class="form-group row">
-            <label for="others" class="col-sm-2 col-form-label">others</label>
-            <div class="col-sm-6">
-              <input type="number" class="form-control" name="groceries_others_spending" placeholder="Amount you spent every month">
-            </div>
-          </div><!-- form-group row-->
+          <div class="form-row">
+            <div class="name">Grocery</div>
+              <div class="form-group row">
+                <label for="ntuc" class="col-sm-2 col-form-label">NTUC</label>
+                <div class="col-sm-6">
+                  <input type="number" class="form-control" name="groceries_ntuc_spending" placeholder="Amount you spent every month">
+                </div>
+              </div><!-- form-group row-->
+              <div class="form-group row">
+                <label for="sheng_siong" class="col-sm-2 col-form-label">Sheng Siong</label>
+                <div class="col-sm-6">
+                  <input type="number" class="form-control" name="groceries_sheng_siong_spending" placeholder="Amount you spent every month">
+                </div>
+              </div><!-- form-group row-->
+              <div class="form-group row">
+                <label for="cold_storage" class="col-sm-2 col-form-label">Cold Storage</label>
+                <div class="col-sm-6">
+                  <input type="number" class="form-control" name="groceries_cold_storage_spending" placeholder="Amount you spent every month">
+                </div>
+              </div><!-- form-group row-->
+              <div class="form-group row">
+                <label for="giant" class="col-sm-2 col-form-label">Giant</label>
+                <div class="col-sm-6">
+                  <input type="number" class="form-control" name="groceries_giant_spending" placeholder="Amount you spent every month">
+                </div>
+              </div><!-- form-group row-->
+              <div class="form-group row">
+                <label for="others" class="col-sm-2 col-form-label">others</label>
+                <div class="col-sm-6">
+                  <input type="number" class="form-control" name="groceries_others_spending" placeholder="Amount you spent every month">
+                </div>
+              </div><!-- form-group row-->
+            </div><!-- form-row -->
         </fieldset>
         {% endif %}
 
         <!-- Petrol -->
         {% if spending == 'petrol' %}
         <fieldset class="form-group">
-          <legend>Petrol</legend>
+          <div class="name">Petrol</div>
           <div class="form-group row">
             <label for="esso" class="col-sm-2 col-form-label">Esso</label>
             <div class="col-sm-6">
@@ -130,7 +128,8 @@
         <!-- Online Shopping -->
         {% if spending == 'online' %}
         <fieldset class="form-group">
-          <legend>Online Shopping</legend>
+          <div class="name">Online Shopping</div>
+          <div class="value"></div>
           <div class="form-group row">
             <label for="hotel_and_flight" class="col-sm-2 col-form-label">Hotel and Flight</label>
             <div class="col-sm-6">
@@ -147,13 +146,8 @@
         {% endif %}
         {% endfor %}
 
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-</div><!-- content container -->
-
-<script src={% static "Recommender/vendor/jquery/jquery-3.2.1.min.js" %}></script>
-<script src={% static "Recommender/vendor/bootstrap/js/popper.js" %}></script>
-<script src={% static "Recommender/vendor/bootstrap/js/bootstrap.min.js" %}></script>
-
-</body>
-</html>
+    <div class="text-right">
+        <button class="btn btn--radius-2 btn--red" type="submit">Next</button>
+    </div>
+</form>
+{% endblock %}
