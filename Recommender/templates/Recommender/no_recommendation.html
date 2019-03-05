@@ -1,50 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% load static %}
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href={% static "Recommender/vendor/bootstrap/css/bootstrap.min.css" %}>
-    <title>Oops</title>
-    <style>
-        /*web background*/
-        .container{
-            display:table;
-            height:100%;
-        }
+{% extends "Recommender/base.html" %}
 
-        .row{
-            display: table-cell;
-            vertical-align: middle;
-        }
-        /* centered columns styles */
-        .row-centered {
-            text-align:center;
-        }
-        .col-centered {
-            display:inline-block;
-            float:none;
-            text-align:left;
-            margin-right:-4px;
-        }
-    </style>
-</head>
-<body>
-
-<div class="container mt-4">
-    <div class="row row-centered">
-        <div class="well col-md-6 col-centered">
-            <h1 class="text-white bg-primary">Oops...</h1>
-            <h3>Sorry you are not eligible for any Credit Cards.</h3>
-{#            <h2>Thank you</h2>#}
-        </div>
-
-    </div>
+{% block form %}
+<div class="pricing-header px-3 py-3 pt-md-0 pb-md-4 mt-2 mx-auto text-center">
+    <h1 class="display-4 mb-5">Oops...</h1>
+    <p class="lead">Sorry you are not eligible for any Credit Cards.</p>
 </div>
-
-
-<script src={% static "Recommender/vendor/jquery/jquery-3.2.1.min.js" %}></script>
-<script src={% static "Recommender/vendor/bootstrap/js/popper.js" %}></script>
-<script src={% static "Recommender/vendor/bootstrap/js/bootstrap.min.js" %}></script>
-</body>
+{% endblock %}
