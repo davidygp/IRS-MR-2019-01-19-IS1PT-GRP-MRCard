@@ -241,7 +241,7 @@ def spending_amount(request):
     print(spending_checkbox_info)
     ## Assign what data to show in the spending_amount.html ##
     #TODO# (LD/YZ)
-    eligible_spending = {'eligible_spending':['bill','dining','retail','transport']} # Get this from LD/YZ
+    eligible_spending = {'eligible_spending':['bill','dining','groceries','transport']} # Get this from LD/YZ
     context = {
     'eligible_spending':eligible_spending['eligible_spending']
     }
