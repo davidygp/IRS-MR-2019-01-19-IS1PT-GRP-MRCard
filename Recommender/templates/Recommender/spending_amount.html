@@ -58,39 +58,37 @@
         <!-- Grocery -->
         {% if spending == 'grocery' %}
         <fieldset class="form-group">
-          <div class="form-row">
             <div class="name">Grocery</div>
-              <div class="form-group row">
-                <label for="ntuc" class="col-sm-2 col-form-label">NTUC</label>
+              <div class="form-row">
+                <label for="ntuc" class="name">NTUC</label>
                 <div class="col-sm-6">
-                  <input type="number" class="form-control" name="groceries_ntuc_spending" placeholder="Amount you spent every month">
+                  <input type="number" class="input--style-5" name="groceries_ntuc_spending" placeholder="Amount you spent every month">
                 </div>
-              </div><!-- form-group row-->
-              <div class="form-group row">
-                <label for="sheng_siong" class="col-sm-2 col-form-label">Sheng Siong</label>
+              </div><!-- form-row-->
+              <div class="form-row">
+                <label for="sheng_siong" class="name">Sheng Siong</label>
                 <div class="col-sm-6">
-                  <input type="number" class="form-control" name="groceries_sheng_siong_spending" placeholder="Amount you spent every month">
+                  <input type="number" class="input--style-5" name="groceries_sheng_siong_spending" placeholder="Amount you spent every month">
                 </div>
-              </div><!-- form-group row-->
-              <div class="form-group row">
-                <label for="cold_storage" class="col-sm-2 col-form-label">Cold Storage</label>
+              </div><!-- form-row-->
+              <div class="form-row">
+                <label for="cold_storage" class="name">Cold Storage</label>
                 <div class="col-sm-6">
-                  <input type="number" class="form-control" name="groceries_cold_storage_spending" placeholder="Amount you spent every month">
+                  <input type="number" class="input--style-5" name="groceries_cold_storage_spending" placeholder="Amount you spent every month">
                 </div>
-              </div><!-- form-group row-->
-              <div class="form-group row">
-                <label for="giant" class="col-sm-2 col-form-label">Giant</label>
+              </div><!-- form-row-->
+              <div class="form-row">
+                <label for="giant" class="name">Giant</label>
                 <div class="col-sm-6">
-                  <input type="number" class="form-control" name="groceries_giant_spending" placeholder="Amount you spent every month">
+                  <input type="number" class="input--style-5" name="groceries_giant_spending" placeholder="Amount you spent every month">
                 </div>
-              </div><!-- form-group row-->
-              <div class="form-group row">
-                <label for="others" class="col-sm-2 col-form-label">others</label>
+              </div><!-- form-row-->
+              <div class="form-row">
+                <label for="others" class="name">others</label>
                 <div class="col-sm-6">
-                  <input type="number" class="form-control" name="groceries_others_spending" placeholder="Amount you spent every month">
+                  <input type="number" class="input--style-5" name="groceries_others_spending" placeholder="Amount you spent every month">
                 </div>
-              </div><!-- form-group row-->
-            </div><!-- form-row -->
+              </div><!-- form-row-->
         </fieldset>
         {% endif %}
 
@@ -98,30 +96,30 @@
         {% if spending == 'petrol' %}
         <fieldset class="form-group">
           <div class="name">Petrol</div>
-          <div class="form-group row">
-            <label for="esso" class="col-sm-2 col-form-label">Esso</label>
+          <div class="form-row">
+            <label for="esso" class="name">Esso</label>
             <div class="col-sm-6">
-              <input type="number" class="form-control" name="petrol_esso_spending" placeholder="Amount you spent every month">
+              <input type="number" class="input--style-5" name="petrol_esso_spending" placeholder="Amount you spent every month">
             </div>
-          </div><!-- form-group row-->
-          <div class="form-group row">
-            <label for="caltex" class="col-sm-2 col-form-label">Caltex</label>
+          </div><!-- form-row-->
+          <div class="form-row">
+            <label for="caltex" class="name">Caltex</label>
             <div class="col-sm-6">
-              <input type="number" class="form-control" name="petrol_caltex_spending" placeholder="Amount you spent every month">
+              <input type="number" class="input--style-5" name="petrol_caltex_spending" placeholder="Amount you spent every month">
             </div>
-          </div><!-- form-group row-->
-          <div class="form-group row">
-            <label for="shell" class="col-sm-2 col-form-label">Shell</label>
+          </div><!-- form-row-->
+          <div class="form-row">
+            <label for="shell" class="name">Shell</label>
             <div class="col-sm-6">
-              <input type="number" class="form-control" name="petrol_shell_spending" placeholder="Amount you spent every month">
+              <input type="number" class="input--style-5" name="petrol_shell_spending" placeholder="Amount you spent every month">
             </div>
-          </div><!-- form-group row-->
-          <div class="form-group row">
-            <label for="others" class="col-sm-2 col-form-label">Others</label>
+          </div><!-- form-row-->
+          <div class="form-row">
+            <label for="others" class="name">Others</label>
             <div class="col-sm-6">
-              <input type="number" class="form-control" name="petrol_others_spending" placeholder="Amount you spent every month">
+              <input type="number" class="input--style-5" name="petrol_others_spending" placeholder="Amount you spent every month">
             </div>
-          </div><!-- form-group row-->
+          </div><!-- form-row-->
         </fieldset>
         {% endif %}
 
@@ -130,18 +128,18 @@
         <fieldset class="form-group">
           <div class="name">Online Shopping</div>
           <div class="value"></div>
-          <div class="form-group row">
-            <label for="hotel_and_flight" class="col-sm-2 col-form-label">Hotel and Flight</label>
+          <div class="form-row">
+            <label for="hotel_and_flight" class="name">Hotel and Flight</label>
             <div class="col-sm-6">
-              <input type="number" class="form-control" name="online_shopping_hotels_and_flight_spending" placeholder="Amount you spent every month">
+              <input type="number" class="input--style-5" name="online_shopping_hotels_and_flight_spending" placeholder="Amount you spent every month">
             </div>
-          </div><!-- form-group row-->
-          <div class="form-group row">
-            <label for="others" class="col-sm-2 col-form-label">Others</label>
+          </div><!-- form-row-->
+          <div class="form-row">
+            <label for="others" class="name">Others</label>
             <div class="col-sm-6">
-              <input type="number" class="form-control" name="online_shopping_others_spending" placeholder="Amount you spent every month">
+              <input type="number" class="input--style-5" name="online_shopping_others_spending" placeholder="Amount you spent every month">
             </div>
-          </div><!-- form-group row-->
+          </div><!-- form-row-->
         </fieldset>
         {% endif %}
         {% endfor %}

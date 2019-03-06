@@ -1,50 +1,150 @@
 {% extends "Recommender/base.html" %}
-{% block css %}
-    <style>
-        .lead {
-            font-size: 1.25rem;
-            font-weight: 300;
-        }
-    </style>
-{% endblock %}
 
 {% block form %}
-<div class="pricing-header px-3 py-3 pt-md-0 pb-md-4 mt-2 mx-auto text-center">
-    <h1 class="display-4">Recommendation</h1>
-    <p class="lead">Here is the credit cards we recommend to you based on you spending habits.</p>
-</div>
-<div class="container">
-    <div class="card-deck text-center">
-        <div class="card mb-6 box-shadow">
-            <div class="card-header">
-                <h4 class="my-0 font-weight-normal">Based on Your Choice</h4>
-            </div>
-            <div class="my-card-body">
-                <h1 class="card-title pricing-card-title">{{ preferred_credit_card }}</h1>
-                <ul class="list-unstyled mt-3 mb-4">
-                    <li>{{ preferred_cashback_amount }}</li>
-                    <li>{{ preferred_miles_amount }}</li>
-                    <li>{{ preferred_points_amount }}</li>
-                </ul>
-                <button type="button" class="my-btn my-btn-lg my-btn-block my-btn-outline-primary" onclick="location.href='http://www.google.com'">Apply
-                </button>
-            </div>
-        </div>
-        <div class="card mb-6 box-shadow">
-            <div class="card-header">
-                <h4 class="my-0 font-weight-normal">Ideal Card</h4>
-            </div>
-            <div class="my-card-body">
-                <h1 class="card-title pricing-card-title">{{ ideal_credit_card }}</h1>
-                <ul class="list-unstyled mt-3 mb-4">
-                    <li>{{ ideal_cashback_amount }}</li>
-                    <li>{{ ideal_miles_amount }}</li>
-                    <li>{{ ideal_points_amount }}</li>
-                </ul>
-                <button type="button" class="my-btn my-btn-lg my-btn-block my-btn-outline-primary" onclick="location.href='http://www.google.com'">Apply</button>
-            </div>
-        </div>
-    </div>
-</div>
+  <form action="{% url 'Recommender:recommendation' %}" method="post">
+    {% csrf_token %}
 
+        <fieldset class="form-group">
+
+            <div class="form-row">
+              <div class="name">Bill</div>
+                <div class="value">
+                  <input class="input--style-5" type="number" name="bill_spending" placeholder="Amount you spent every month">
+                </div>
+            </div>
+
+
+            <div class="form-row">
+              <div class="name">Dining</div>
+                <div class="value">
+                  <input class="input--style-5" type="number" name="dining_spending" placeholder="Amount you spent every month">
+                </div>
+            </div>
+
+
+            <div class="form-row">
+              <div class="name">Entertainment</div>
+                <div class="value">
+                  <input class="input--style-5" type="number" name="entertainment_spending" placeholder="Amount you spent every month">
+                </div>
+            </div>
+
+
+            <div class="form-row">
+              <div class="name">Foreign Currency Spending (converted to SGD)</div>
+                <div class="value">
+                  <input class="input--style-5" type="number" name="foreign_spending" placeholder="Amount you spent every month">
+                </div>
+            </div>
+
+
+            <div class="form-row">
+              <div class="name">Retail Shopping</div>
+                <div class="value">
+                  <input class="input--style-5" type="number" name="retail_shopping_spending" placeholder="Amount you spent every month">
+                </div>
+            </div>
+
+
+            <div class="form-row">
+              <div class="name">Transport</div>
+                <div class="value">
+                  <input class="input--style-5" type="number" name="transport_spending" placeholder="Amount you spent every month">
+                </div>
+            </div>
+
+        </fieldset>
+
+        <!-- Grocery -->
+
+        <fieldset class="form-group">
+            <div class="name">Grocery</div>
+              <div class="form-row">
+                <label for="ntuc" class="name">NTUC</label>
+                <div class="col-sm-6">
+                  <input type="number" class="input--style-5" name="groceries_ntuc_spending" placeholder="Amount you spent every month">
+                </div>
+              </div><!-- form-row-->
+              <div class="form-row">
+                <label for="sheng_siong" class="name">Sheng Siong</label>
+                <div class="col-sm-6">
+                  <input type="number" class="input--style-5" name="groceries_sheng_siong_spending" placeholder="Amount you spent every month">
+                </div>
+              </div><!-- form-row-->
+              <div class="form-row">
+                <label for="cold_storage" class="name">Cold Storage</label>
+                <div class="col-sm-6">
+                  <input type="number" class="input--style-5" name="groceries_cold_storage_spending" placeholder="Amount you spent every month">
+                </div>
+              </div><!-- form-row-->
+              <div class="form-row">
+                <label for="giant" class="name">Giant</label>
+                <div class="col-sm-6">
+                  <input type="number" class="input--style-5" name="groceries_giant_spending" placeholder="Amount you spent every month">
+                </div>
+              </div><!-- form-row-->
+              <div class="form-row">
+                <label for="others" class="name">others</label>
+                <div class="col-sm-6">
+                  <input type="number" class="input--style-5" name="groceries_others_spending" placeholder="Amount you spent every month">
+                </div>
+              </div><!-- form-row-->
+        </fieldset>
+
+
+        <!-- Petrol -->
+
+        <fieldset class="form-group">
+          <div class="name">Petrol</div>
+          <div class="form-row">
+            <label for="esso" class="name">Esso</label>
+            <div class="col-sm-6">
+              <input type="number" class="input--style-5" name="petrol_esso_spending" placeholder="Amount you spent every month">
+            </div>
+          </div><!-- form-row-->
+          <div class="form-row">
+            <label for="caltex" class="name col-sm-6">Caltex</label>
+            <div class="col-sm-6">
+              <input type="number" class="input--style-5" name="petrol_caltex_spending" placeholder="Amount you spent every month">
+            </div>
+          </div><!-- form-row-->
+          <div class="form-row">
+            <label for="shell" class="name">Shell</label>
+            <div class="col-sm-6">
+              <input type="number" class="input--style-5" name="petrol_shell_spending" placeholder="Amount you spent every month">
+            </div>
+          </div><!-- form-row-->
+          <div class="form-row">
+            <label for="others" class="name">Others</label>
+            <div class="col-sm-6">
+              <input type="number" class="input--style-5" name="petrol_others_spending" placeholder="Amount you spent every month">
+            </div>
+          </div><!-- form-row-->
+        </fieldset>
+
+
+        <!-- Online Shopping -->
+
+        <fieldset class="form-group">
+          <div class="name">Online Shopping</div>
+          <div class="value"></div>
+          <div class="form-row">
+            <label for="hotel_and_flight" class="name">Hotel and Flight</label>
+            <div class="col-sm-6">
+              <input type="number" class="input--style-5" name="online_shopping_hotels_and_flight_spending" placeholder="Amount you spent every month">
+            </div>
+          </div><!-- form-row-->
+          <div class="form-row">
+            <label for="others" class="name">Others</label>
+            <div class="col-sm-6">
+              <input type="number" class="input--style-5" name="online_shopping_others_spending" placeholder="Amount you spent every month">
+            </div>
+          </div><!-- form-row-->
+        </fieldset>
+
+
+    <div class="text-right">
+        <button class="btn btn--radius-2 btn--red" type="submit">Next</button>
+    </div>
+</form>
 {% endblock %}
