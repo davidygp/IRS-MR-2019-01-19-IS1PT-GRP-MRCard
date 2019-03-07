@@ -5,13 +5,13 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import CreditCards
 from .config import *
-from .rules import return_eligibile_credit_card_ids
+from .rules import return_eligibile_credit_card_ids, return_preferred_credit_card_ids, return_eligible_spendings_for_breakdown
 
 debug = True
 
 # Functions used below
 def retrieve_data_or_set_to_default(input_dict, default_dict):
-    '''
+    ''' 
     Given a dictionary of data (e.g. from the HTML POST request) and a default dictionary.
     For fields that are not in the dictionary of data but in the default dictionary, assign the new fields as the default.
     '''
@@ -19,9 +19,12 @@ def retrieve_data_or_set_to_default(input_dict, default_dict):
     for key in default_dict.keys():
         try:
             val = input_dict[key] # Check if key exists
+            print(val, type(val), type(val)==list)
             if len(val) == 0: # If it is empty
                 output_dict[key] = default_dict[key]
-            else:
+            elif type(val)==list: #If the value is a list
+                output_dict[key] = val 
+            else: # If its not a list
                 output_dict[key] = convert_string_to_int_or_float(val) 
         except:
             output_dict[key] = default_dict[key] 
@@ -40,8 +43,8 @@ def convert_string_to_int_or_float(string):
             output = float(string)
             return output
         except:
-            return string
-    return string
+            return string.lower()
+    return string.lower()
     
 def retrieve_subset_out_of_query_set(query_set, list_of_keys):
     '''
@@ -110,9 +113,15 @@ def preferences(request):
 def spending_checkbox(request):
     # This is the third html page
     map_POST_to_session(request) # Save the POST data into the session
+    
+    ### Process Data to determine preference ###
+    ## Retrieve Preference info ##
     print(request.POST)
-    ## Retrieve Prefence info ##
-    preference_info = retrieve_data_or_set_to_default(request.POST, preference_info_default_dict)
+    print(request.POST.get('preferred_bank'))
+    print(request.POST['preferred_bank'])
+    preference_info = request.POST
+    #{'preferred_bank':request.POST['preferred_bank'], 'preferred_card_type':request.POST['preferred_card_type'],'preferred_rewards_type':request.POST['preferred_rewards_type']} 
+    #retrieve_data_or_set_to_default(request.POST, preference_info_default_dict)
     ## Retrieve Credit Card preference related info ##
     all_credit_card_info = CreditCards.objects.values()
     credit_card_preference_info = retrieve_subset_out_of_query_set(all_credit_card_info, credit_card_preference_list)
@@ -121,21 +130,34 @@ def spending_checkbox(request):
         print(preference_info)
         print("---- Credit Card Preference Info ----")
         print(credit_card_preference_info)
+    ## Calculate the preferred Credit Cards here ##
+    preferred_credit_card_ids = return_preferred_credit_card_ids(preference_info, credit_card_preference_info)
+    if debug:
+        print("---- Preferred Credit Cards ----")
+        print(preferred_credit_card_ids)
+    request.session['preferred_credit_card_ids'] = preferred_credit_card_ids['preferred_credit_card_ids']
     return render(request, 'Recommender/spending_checkbox.html')
 
 
 def spending_amount(request):
     # This is the fourth html page
     map_POST_to_session(request) # Save the POST data into the session
-
+    print(request.POST)
+    print("Session")
+    print(request.session)
     ## Retrieve Spending Checkbox info ##
     spending_checkbox_info = retrieve_data_or_set_to_default(request.POST, spending_checkbox_default_dict)
-    print(spending_checkbox_info)
+    if debug:
+        print("---- Spending Checkbox Info ----")
+        print(spending_checkbox_info)
     ## Assign what data to show in the spending_amount.html ##
-    #TODO# (LD/YZ)
-    eligible_spending = {'eligible_spending':['bill','dining','groceries','transport']} # Get this from LD/YZ
+    eligible_spending = return_eligible_spendings_for_breakdown(spending_checkbox_info)
+    if debug:
+        print("---- Spending Breakdown Info ----")
+        print(eligible_spending)
+    #eligible_spending = {'eligible_spending':['bill','dining','groceries','transport']} # Get this from LD/YZ
     context = {
-    'eligible_spending':eligible_spending['eligible_spending']
+    'eligible_spending': eligible_spending['eligible_spending']
     }
     return render(request, 'Recommender/spending_amount.html', context)
 

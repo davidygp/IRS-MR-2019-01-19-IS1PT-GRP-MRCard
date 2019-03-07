@@ -37,7 +37,7 @@
                 </div>
             </div>
           {% endif %}
-          {% if spending == 'retail' %}
+          {% if spending == 'retail_shopping' %}
             <div class="form-row">
               <div class="name">Retail Shopping</div>
                 <div class="value">
@@ -58,7 +58,7 @@
         <!-- Grocery -->
         {% if spending == 'groceries' %}
         <fieldset class="form-group">
-            <label class="label label--block">Grocery</label>
+            <label class="label label--block">Groceries</label>
               <div class="form-row">
                 <label for="ntuc" class="name"></label>
                 <div class="value">
@@ -187,7 +187,7 @@
         {% endif %}
 
         <!-- Online Shopping -->
-        {% if spending == 'online' %}
+        {% if spending == 'online_shopping' %}
         <fieldset class="form-group">
           <label class="label label--block">Online Shopping</label>
           <div class="value"></div>

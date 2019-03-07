@@ -102,3 +102,68 @@ def return_eligibile_credit_card_ids(dict_of_personal_info, list_of_dict_of_cred
         if engine.eligible_status:
             eligible_card_ids['eligible_credit_card_ids'].append(cardid)
     return eligible_card_ids
+
+def return_preferred_credit_card_ids(dict_of_preference_info, list_of_dict_of_credit_card_preference_info, debug=False):
+    preferred_credit_card_ids = {'preferred_credit_card_ids':[]}
+    
+    for row in list_of_dict_of_credit_card_preference_info:
+        class PreferenceInput(Fact):
+            preferred_bank = Field(str)
+            preferred_card_type = Field(str)
+            preferred_rewards_type = Field(str)
+            pass
+
+        class Preference(KnowledgeEngine):
+            def __init__(self, *args, **kwargs):
+                super().__init__(*args, **kwargs)
+                self.prefered = None
+            # Credit Card's Bank is within preferred list AND within paymnet network
+            @Rule(AND(AS.v << PreferenceInput(data__preferred_bank = MATCH.data__preferred_bank),
+                      TEST(lambda data__preferred_bank: bank_name in data__preferred_bank or bank_name == data__preferred_bank),
+                      AS.v << PreferenceInput(data__preferred_card_type = MATCH.data__preferred_card_type),
+                      TEST(lambda data__preferred_card_type: set(data__preferred_card_type).issubset(set(payment_networks)) or data__preferred_card_type in payment_networks))
+                 )
+            def bank_within_preferred_and_in_payment_network(self, v):
+                print("Cardid %s, %s is a preferred bank and has the %s payment network desired" %(cardid, bank_name, ' '.join(payment_networks)))
+                self.prefered = True
+                self.halt()
+            # Credit Card's Bank is NOT within preferred list
+            @Rule(AS.v << PreferenceInput(data__preferred_bank = MATCH.data__preferred_bank),
+                  TEST(lambda data__preferred_bank: bank_name not in data__preferred_bank))
+            def bank_not_within_preferred(self, v):
+                print("Cardid %s, %s is not a preferred bank" %(cardid, bank_name))
+                self.prefered = False
+                self.halt()
+            # Credit Card's Bank is NOT within payment network
+            @Rule(AS.v << PreferenceInput(data__preferred_card_type = MATCH.data__preferred_card_type),
+                  TEST(lambda data__preferred_card_type: set(payment_networks).issubset(set(data__preferred_card_type)) == False))
+            def credit_card_not_in_payment_network(self, v):
+                print("Cardid %s, preferred payment network not within %s" %(cardid,' '.join(payment_networks)))
+                self.prefered = False
+                self.halt()
+                
+        cardid = str(row['credit_card_id'][0])
+        credit_card_name = str(row['credit_card_name'][0])
+        bank_name = row['bank_name'][0].lower()
+        payment_networks = row['payment_networks']
+        
+        engine = Preference()
+        engine.reset()
+        engine.declare(PreferenceInput(data=dict_of_preference_info))
+        engine.run()
+        if debug:       
+            print(row)
+            print(preference_info)
+            print(engine.prefered)
+            print("\n")
+        if engine.prefered:
+            preferred_credit_card_ids['preferred_credit_card_ids'].append(cardid)
+    return preferred_credit_card_ids
+
+def return_eligible_spendings_for_breakdown(dict_of_spending_checkbox_info, debug=False):
+    eligible_spending = {'eligible_spending':[]}
+    for key in dict_of_spending_checkbox_info:
+        val = dict_of_spending_checkbox_info[key]
+        if  val == 1:
+            eligible_spending['eligible_spending'].append('_'.join(key.split("_")[0:-1]))
+    return eligible_spending
