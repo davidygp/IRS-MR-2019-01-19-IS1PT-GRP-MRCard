@@ -313,7 +313,7 @@
   }
 }*/
 
-.form-row .my-name {
+.form-row .name {
   padding-left: 25px;
   width: 125px;
   color: #555;
@@ -331,12 +331,12 @@
   .form-row {
     display: block;
   }
-  .form-row .my-name,
+  .form-row .name,
   .form-row .value {
     display: block;
     width: 100%;
   }
-  .form-row .my-name {
+  .form-row .name {
     margin-bottom: 7px;
   }
 }

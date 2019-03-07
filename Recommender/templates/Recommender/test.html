@@ -1,5 +1,13 @@
 {% extends "Recommender/base.html" %}
 
+{% block css %}
+    <style>
+        .indent{
+            margin-left: 50px;
+        }
+    </style>
+{% endblock %}
+
 {% block form %}
   <form action="{% url 'Recommender:recommendation' %}" method="post">
     {% csrf_token %}
@@ -58,12 +66,30 @@
         <!-- Grocery -->
 
         <fieldset class="form-group">
-            <div class="name">Grocery</div>
-              <div class="form-row">
-                <label for="ntuc" class="name">NTUC</label>
-                <div class="col-sm-6">
-                  <input type="number" class="input--style-5" name="groceries_ntuc_spending" placeholder="Amount you spent every month">
-                </div>
+            <label class="label label--block mb-4">Grocery</label>
+              <div class="form-row m-b-55">
+                            <div class="name"></div>
+                            <div class="value">
+                                <div class="row row-refine">
+                                    <div class="col-12">
+                                        <div class="input-group-desc">
+                                             <input type="number" class="input--style-5" name="groceries_ntuc_spending" placeholder="Amount you spent every month">
+
+                                            <label class="label--desc">NTUC</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                <label for="ntuc" class="indent">NTUC</label>
+                  <div class="input-group-desc">
+{#                      <div class="value">#}
+                          <input type="number" class="input--style-5" name="groceries_ntuc_spending" placeholder="Amount you spent every month">
+                          <label class="label--desc">NTUC</label>
+{#                      </div>#}
+                  </div>
+
               </div><!-- form-row-->
               <div class="form-row">
                 <label for="sheng_siong" class="name">Sheng Siong</label>
