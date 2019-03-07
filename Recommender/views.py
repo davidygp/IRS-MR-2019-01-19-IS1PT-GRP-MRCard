@@ -4,140 +4,14 @@ from django.shortcuts import render
 
 from django.http import HttpResponse
 from .models import CreditCards
+from .config import *
+from .rules import return_eligibile_credit_card_ids, return_preferred_credit_card_ids, return_eligible_spendings_for_breakdown
 
-# Some configurations, maybe it shouldn't be here, but meh
-credit_card_eligibility_list = ['credit_card_id',
-'credit_card_name',
-'multiple_levels',
-'bank_name',
-'payment_networks',
-'age_min',
-'age_max',
-'gender_req',
-'annual_income_singaporean_min',
-'annual_income_pr_min',
-'annual_income_foreigner_min']
-credit_card_spending_list = ['credit_card_id',
-'foreign_currency_transaction_fee',
-'annual_fee',
-'annual_fee_waiver_min_spend',
-'overall_points_cap',
-'overall_points_min_spend',
-'contactless_points_multiplier',
-'contactless_points_cap',
-'contactless_points_lot',
-'dining_points_multiplier',
-'dining_points_cap',
-'dining_points_lot',
-'entertainment_points_multiplier',
-'entertainment_points_cap',
-'entertainment_points_lot',
-'foreign_points_multiplier',
-'foreign_points_cap',
-'foreign_points_lot',
-'online_shopping_others_points_multiplier',
-'online_shopping_others_points_cap',
-'online_shopping_others_points_lot',
-'online_shopping_hotels_and_flight_points_multiplier',
-'online_shopping_hotels_and_flights_points_cap',
-'online_shopping_hotels_and_flights_points_lot',
-'retail_shopping_points_multiplier',
-'retail_shopping_points_cap',
-'retail_shopping_points_lot',
-'points_to_miles_conversion',
-'overall_cashback_cap',
-'overall_cashback_min_spend',
-'cash_cashback',
-'bill_cashback_rate',
-'bill_cashback_cap',
-'bill_cashback_min_spend',
-'contactless_cashback_rate',
-'contactless_cashback_cap',
-'contactless_cashback_min_spend',
-'dining_cashback_rate',
-'dining_cashback_cap',
-'dining_cashback_min_spend',
-'foreign_cashback_rate',
-'foreign_cashback_cap',
-'foreign_cashback_min_spend',
-'groceries_overall_cashback_cap',
-'groceries_others_cashback_rate',
-'groceries_others_cashback_cap',
-'groceries_others_cashback_min_spend',
-'groceries_ntuc_cashback_rate',
-'groceries_ntuc_cashback_cap',
-'groceries_ntuc_cashback_min_spend',
-'groceries_sheng_siong_cashback_rate',
-'groceries_sheng_siong_cashback_cap',
-'groceries_sheng_siong_cashback_min_spend',
-'groceries_cold_storage_cashback_rate',
-'groceries_cold_storage_cashback_cap',
-'groceries_cold_storage_cashback_min_spend',
-'groceries_giant_cashback_rate',
-'groceries_giant_cashback_cap',
-'groceries_giant_cashback_min_spend',
-'online_shopping_overall_cashback_cap',
-'online_shopping_others_cashback_rate',
-'online_shopping_others_cashback_cap',
-'online_shopping_others_cashback_min_spend',
-'online_shopping_hotels_and_flights_cashback_rate',
-'online_shopping_hotels_and_flights_cashback_cap',
-'online_shopping_hotels_and_flights_cashback_min_spend',
-'petrol_overal_cashback_cap',
-'petrol_others_cashback_rate',
-'petrol_others_cashback_cap',
-'petrol_others_cashback_min_spend',
-'petrol_esso_cashback_rate',
-'petrol_esso_cashback_cap',
-'petrol_esso_cashback_min_spend',
-'petrol_caltex_cashback_rate',
-'petrol_caltex_cashback_cap',
-'petrol_caltex_cashback_min_spend',
-'petrol_shell_cashback_rate',
-'petrol_shell_cashback_cap',
-'petrol_shell_cashback_min_spend',
-'retail_shopping_cashback_rate',
-'retail_shopping_cashback_cap',
-'retail_shopping_cashback_min_spend',
-'transport_cashback_rate',
-'transport_cashback_cap',
-'transport_cashback_min_spend']
-personal_info_default_dict = {'annual_income':0,
-'age':0,
-'gender':'M',
-'citizenship':'foreigner',
-'total_spending_amount':0}
-spending_checkbox_default_dict = {'bill_checkbox':0,
-'dining_checkbox':0,
-'entertainment_checkbox':0,
-'foreign_checkbox':0,
-'groceries_checkbox':0,
-'online_shopping_checkbox':0,
-'petrol_checkbox':0,
-'retail_shopping_checkbox':0,
-'transport_checkbox':0}
-spending_amounts_default_dict = {'bill_spending':0,
-'dining_spending':0,
-'entertainment_spending':0,
-'foreign_spending':0,
-'groceries_others_spending':0,
-'groceries_ntuc_spending':0,
-'groceries_sheng_siong_spending':0,
-'groceries_cold_storage_spending':0,
-'groceres_giant_spending':0,
-'online_shopping_others_spending':0,
-'online_shopping_hotels_and_flight_spending':0,
-'petrol_others_spending':0,
-'petrol_esso_spending':0,
-'petrol_caltex_spending':0,
-'petrol_shell_spending':0,
-'retail_shopping_spending':0,
-'transport_spending':0}
-
+debug = True
 
 # Functions used below
 def retrieve_data_or_set_to_default(input_dict, default_dict):
-    '''
+    ''' 
     Given a dictionary of data (e.g. from the HTML POST request) and a default dictionary.
     For fields that are not in the dictionary of data but in the default dictionary, assign the new fields as the default.
     '''
@@ -145,9 +19,12 @@ def retrieve_data_or_set_to_default(input_dict, default_dict):
     for key in default_dict.keys():
         try:
             val = input_dict[key] # Check if key exists
+            print(val, type(val), type(val)==list)
             if len(val) == 0: # If it is empty
                 output_dict[key] = default_dict[key]
-            else:
+            elif type(val)==list: #If the value is a list
+                output_dict[key] = val 
+            else: # If its not a list
                 output_dict[key] = convert_string_to_int_or_float(val) 
         except:
             output_dict[key] = default_dict[key] 
@@ -166,8 +43,8 @@ def convert_string_to_int_or_float(string):
             output = float(string)
             return output
         except:
-            return string
-    return string
+            return string.lower()
+    return string.lower()
     
 def retrieve_subset_out_of_query_set(query_set, list_of_keys):
     '''
@@ -209,17 +86,24 @@ def preferences(request):
     # This is the second html page
     map_POST_to_session(request) # Save the POST data into the session
     
+    ### Process Data to determine eligibility ###
     ## Retrieve Personal eligibility info ##
     personal_info = retrieve_data_or_set_to_default(request.POST, personal_info_default_dict)
-    ## Retrieve Credit Card eligibility info ##
+    ## Retrieve Credit Card eligibility related info ##
     all_credit_card_info = CreditCards.objects.values()
-    #print(all_credit_card_info) 
     credit_card_eligibility_info = retrieve_subset_out_of_query_set(all_credit_card_info, credit_card_eligibility_list)
     #print(credit_card_eligibility_info)
+    if debug:
+        print("---- Personal Info ----")
+        print(personal_info)
+        print("---- Credit Card Eligibility Info ----")
+        print(credit_card_eligibility_info)
     ## Calculate the eligible Credit Cards here ##
-    #TODO# (LD/YZ)
-    eligible_credit_card_ids = {'eligible_credit_card_ids':[1,2,3]} # Get this from LD/YZ
-    #eligible_credit_card_ids = {'eligible_credit_card_ids':[]} # Test empty
+    eligible_credit_card_ids = return_eligibile_credit_card_ids(personal_info, credit_card_eligibility_info) 
+    if debug:
+        print("---- Eligible Credit Cards ----")
+        print(eligible_credit_card_ids)
+    request.session['eligible_credit_card_ids'] = eligible_credit_card_ids['eligible_credit_card_ids']
     if len(eligible_credit_card_ids['eligible_credit_card_ids']) == 0:
         return render(request, 'Recommender/no_recommendation.html')
     else:
@@ -229,21 +113,51 @@ def preferences(request):
 def spending_checkbox(request):
     # This is the third html page
     map_POST_to_session(request) # Save the POST data into the session
+    
+    ### Process Data to determine preference ###
+    ## Retrieve Preference info ##
+    print(request.POST)
+    print(request.POST.get('preferred_bank'))
+    print(request.POST['preferred_bank'])
+    preference_info = request.POST
+    #{'preferred_bank':request.POST['preferred_bank'], 'preferred_card_type':request.POST['preferred_card_type'],'preferred_rewards_type':request.POST['preferred_rewards_type']} 
+    #retrieve_data_or_set_to_default(request.POST, preference_info_default_dict)
+    ## Retrieve Credit Card preference related info ##
+    all_credit_card_info = CreditCards.objects.values()
+    credit_card_preference_info = retrieve_subset_out_of_query_set(all_credit_card_info, credit_card_preference_list)
+    if debug:
+        print("---- Preference Info ----")
+        print(preference_info)
+        print("---- Credit Card Preference Info ----")
+        print(credit_card_preference_info)
+    ## Calculate the preferred Credit Cards here ##
+    preferred_credit_card_ids = return_preferred_credit_card_ids(preference_info, credit_card_preference_info)
+    if debug:
+        print("---- Preferred Credit Cards ----")
+        print(preferred_credit_card_ids)
+    request.session['preferred_credit_card_ids'] = preferred_credit_card_ids['preferred_credit_card_ids']
     return render(request, 'Recommender/spending_checkbox.html')
 
 
 def spending_amount(request):
     # This is the fourth html page
     map_POST_to_session(request) # Save the POST data into the session
-
+    print(request.POST)
+    print("Session")
+    print(request.session)
     ## Retrieve Spending Checkbox info ##
     spending_checkbox_info = retrieve_data_or_set_to_default(request.POST, spending_checkbox_default_dict)
-    print(spending_checkbox_info)
+    if debug:
+        print("---- Spending Checkbox Info ----")
+        print(spending_checkbox_info)
     ## Assign what data to show in the spending_amount.html ##
-    #TODO# (LD/YZ)
-    eligible_spending = {'eligible_spending':['bill','dining','groceries','transport']} # Get this from LD/YZ
+    eligible_spending = return_eligible_spendings_for_breakdown(spending_checkbox_info)
+    if debug:
+        print("---- Spending Breakdown Info ----")
+        print(eligible_spending)
+    #eligible_spending = {'eligible_spending':['bill','dining','groceries','transport']} # Get this from LD/YZ
     context = {
-    'eligible_spending':eligible_spending['eligible_spending']
+    'eligible_spending': eligible_spending['eligible_spending']
     }
     return render(request, 'Recommender/spending_amount.html', context)
 
