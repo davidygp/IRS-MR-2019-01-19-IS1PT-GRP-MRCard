@@ -11,10 +11,13 @@
     <title>{% block title %}MRCard{% endblock %}</title>
 
     <!-- Icons font CSS-->
-    <link href="{% static 'Recommender/vendor/mdi-font/css/material-design-iconic-font.min.css' %}" rel="stylesheet" media="all">
-    <link href="{% static 'Recommender/vendor/font-awesome-4.7/css/font-awesome.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'Recommender/vendor/mdi-font/css/material-design-iconic-font.min.css' %}" rel="stylesheet"
+          media="all">
+    <link href="{% static 'Recommender/vendor/font-awesome-4.7/css/font-awesome.min.css' %}" rel="stylesheet"
+          media="all">
     <!-- Font special for pages-->
-    <link href=https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <link href=https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i"
+          rel="stylesheet">
 
     <!-- Vendor CSS-->
     <link href="{% static 'Recommender/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -31,14 +34,14 @@
 </head>
 
 <body>
-    <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
-        <div class="wrapper wrapper--w790">
-            <div class="card card-5">
-                <div class="card-heading">
-                    <h2 class="title">{% block formtitle %}MRCard Form{% endblock %}</h2>
-                </div>
-                <div class="card-body">
-                    {% block form %}
+<div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
+    <div class="wrapper wrapper--w790">
+        <div class="card card-5">
+            <div class="card-heading">
+                <h2 class="title">{% block formtitle %}MRCard Form{% endblock %}</h2>
+            </div>
+            <div class="card-body">
+                {% block form %}
                     <form method="POST">
                         <div class="form-row m-b-55">
                             <div class="name">Name</div>
@@ -127,22 +130,22 @@
                             <button class="btn btn--radius-2 btn--red" type="submit">Register</button>
                         </div>
                     </form>
-                    {% endblock %}
+                {% endblock %}
 
-                </div>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Jquery JS-->
-    <script src="{% static 'Recommender/vendor/jquery/jquery.min.js' %}"></script>
-    <!-- Vendor JS-->
-    <script src="{% static 'Recommender/vendor/select2/select2.min.js' %}"></script>
-    <script src="{% static 'Recommender/vendor/datepicker/moment.min.js' %}"></script>
-    <script src="{% static 'Recommender/vendor/datepicker/daterangepicker.js' %}"></script>
+<!-- Jquery JS-->
+<script src="{% static 'Recommender/vendor/jquery/jquery.min.js' %}"></script>
+<!-- Vendor JS-->
+<script src="{% static 'Recommender/vendor/select2/select2.min.js' %}"></script>
+<script src="{% static 'Recommender/vendor/datepicker/moment.min.js' %}"></script>
+<script src="{% static 'Recommender/vendor/datepicker/daterangepicker.js' %}"></script>
 
-    <!-- Main JS-->
-    <script src="{% static 'Recommender/js/global.js' %}"></script>
+<!-- Main JS-->
+<script src="{% static 'Recommender/js/global.js' %}"></script>
 
 </body>
 
