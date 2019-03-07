@@ -4,7 +4,7 @@
     <form action="{% url 'Recommender:spending_checkbox' %}" method="POST">
         {% csrf_token %}
         <div class="form-row">
-            <div class="name">Preferred Bank</div>
+            <label class="label label--block">Preferred Bank</label>
             <div class="value">
                 <div class="my-input-group custom-control custom-checkbox">
                     <div class="custom-control custom-checkbox mr-4">
@@ -46,7 +46,7 @@
 
         <!-- preferred_card_type -->
         <div class="form-row">
-            <div class="name">Preferred Card Payment Network</div>
+            <label class="label label--block">Preferred Card Payment Network</label>
             <div class="value">
                 <div class="my-input-group custom-control custom-checkbox">
                     <div class="custom-control custom-checkbox mr-4">
@@ -75,7 +75,7 @@
 
         <!-- preferred_rewards_type -->
         <div class="form-row">
-            <div class="name">Preferred Rewards Type</div>
+            <label class="label label--block">Preferred Rewards Type</label>
             <div class="value">
                 <div class="my-input-group custom-control custom-checkbox">
                     <div class="custom-control custom-checkbox mr-4">

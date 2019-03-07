@@ -4,7 +4,7 @@
     <form action="{% url 'Recommender:spending_amount' %}" method="post">
         {% csrf_token %}
         <div class="form-row">
-            <div class="name">What do you pay by credit cards</div>
+            <label class="label label--block">What do you pay by credit cards</label>
             <div class="value">
                 <div class="custom-control custom-checkbox">
                     <input class="custom-control-input" type="checkbox" name="bill_checkbox" id="bill" value="1">
