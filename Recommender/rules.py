@@ -173,8 +173,8 @@ def return_credit_card_reward(dict_of_personal_spending, list_of_dict_of_credit_
     reward_card_ids = {'reward_credit_card_ids':[]}
 
     for row in list_of_dict_of_credit_card_eligibility_info:
-		class SpendingInput(Fact):  
-			bill_spending = Field(float)
+	class SpendingInput(Fact):  
+	    bill_spending = Field(float)
             dining_spending = Field(float)
             foreign_spending = Field(float)
             retail_shopping_spending = Field(float)
@@ -240,8 +240,8 @@ def return_credit_card_reward(dict_of_personal_spending, list_of_dict_of_credit_
 				
         cardid = str(row['credit_card_id'][0])
         credit_card_name = str(row['credit_card_name'][0])
-		overall_points_cap = row['overall_points_cap'][0]
-		overall_points_min_spend = row['overall_points_min_spend'][0]
+	overall_points_cap = row['overall_points_cap'][0]
+	overall_points_min_spend = row['overall_points_min_spend'][0]
         contactless_points_multiplier = row['contactless_points_multiplier'][0]
         contactless_points_cap = row['contactless_points_cap'][0]
         contactless_points_lot = row['contactless_points_lot'][0]
