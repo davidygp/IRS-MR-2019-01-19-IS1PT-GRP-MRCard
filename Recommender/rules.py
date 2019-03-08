@@ -198,45 +198,45 @@ def return_credit_card_reward(dict_of_personal_spending, list_of_dict_of_credit_
                 self.reward_points = 0
 
             # Reward for dining
-			@Rule(AS.v << SpendingInput(data__dining_spending = MATCH.data__dining_spending),
-				TEST(lambda data__dining_spending: data__dining_spending >= 0))
-			def reward_dining(self):
-				self.reward_dining = data__dining_spending // dining_points_lot * dining_points_multiplier
-				#need to pass back value to backend
-				self.halt()
+		@Rule(AS.v << SpendingInput(data__dining_spending = MATCH.data__dining_spending),
+			TEST(lambda data__dining_spending: data__dining_spending >= 0))
+		def reward_dining(self):
+			self.reward_dining = data__dining_spending // dining_points_lot * dining_points_multiplier
+			#need to pass back value to backend
+			self.halt()
 			
-			@Rule(AS.v << SpendingInput(data__entertainment_spending = MATCH.data__entertainment_spending),
-				TEST(lambda data__entertainment_spending: data__entertainment_spending >= 0))
-			def reward_entertainment(self):
-				self.reward_entertainment = data__entertainment_spending // entertainment_points_lot * entertainment_points_multiplier
-				#need to pass back value to backend
-				self.half()
+		@Rule(AS.v << SpendingInput(data__entertainment_spending = MATCH.data__entertainment_spending),
+			TEST(lambda data__entertainment_spending: data__entertainment_spending >= 0))
+		def reward_entertainment(self):
+			self.reward_entertainment = data__entertainment_spending // entertainment_points_lot * entertainment_points_multiplier
+			#need to pass back value to backend
+			self.half()
 
-			@Rule(AS.v << SpendingInput(data__foreign_spending = MATCH.data__foreign_spending),
-				TEST(lambda data__foreign_spending: data__foreign_spending >= 0))
-			def reward_foreign(self):
-				self.reward_foreign = data__foreign_spending // foreign_cashback_lot * foreign_points_multiplier
-				#need to pass back value to backend
-				self.half()
+		@Rule(AS.v << SpendingInput(data__foreign_spending = MATCH.data__foreign_spending),
+			TEST(lambda data__foreign_spending: data__foreign_spending >= 0))
+		def reward_foreign(self):
+			self.reward_foreign = data__foreign_spending // foreign_cashback_lot * foreign_points_multiplier
+			#need to pass back value to backend
+			self.half()
 				
-			@Rule(AS.v << SpendingInput(data__online_shopping_other_spending = MATCH.data__online_shopping_other_spending),
-				TEST(lambda data__online_shopping_other_spending: data__online_shopping_other_spending >= 0))
-			def reward_online_shopping_other(self):
-				self.reward_online_shopping_other = data__online_shopping_other_spending // online_shopping_others_points_lot * online_shopping_others_points_multiplier
-				#need to pass back value to backend
-				self.halt()
-			@Rule(AS.v << SpendingInput(data__online_shopping_hotels_and_flight_spending = MATCH.data__online_shopping_hotels_and_flight_spending),
-				TEST(lambda data__online_shopping_hotels_and_flight_spending: data__online_shopping_hotels_and_flight_spending >= 0))
-			def reward_online_shopping_hotels_and_flight(self):
-				self.reward_online_shopping_hotels_and_flight = data__online_shopping_hotels_and_flight_spending // online_shopping_hotels_and_flights_points_lot * online_shopping_hotels_and_flight_points_multiplier
-				#need to pass back value to backend
-				self.halt()
-			@Rule(AS.v << SpendingInput(data__retail_spending = MATCH.data__retail_spending),
-				TEST(lambda data__retail_spending: data__retail_spending >= 0))
-			def reward_retail(self, v):
-				self.reward_retail = data__retail_spending // retail_shopping_points_lot * retail_shopping_points_multiplier
-				#need to pass back value to backend
-				self.halt()
+		@Rule(AS.v << SpendingInput(data__online_shopping_other_spending = MATCH.data__online_shopping_other_spending),
+			TEST(lambda data__online_shopping_other_spending: data__online_shopping_other_spending >= 0))
+		def reward_online_shopping_other(self):
+			self.reward_online_shopping_other = data__online_shopping_other_spending // online_shopping_others_points_lot * online_shopping_others_points_multiplier
+			#need to pass back value to backend
+			self.halt()
+		@Rule(AS.v << SpendingInput(data__online_shopping_hotels_and_flight_spending = MATCH.data__online_shopping_hotels_and_flight_spending),
+			TEST(lambda data__online_shopping_hotels_and_flight_spending: data__online_shopping_hotels_and_flight_spending >= 0))
+		def reward_online_shopping_hotels_and_flight(self):
+			self.reward_online_shopping_hotels_and_flight = data__online_shopping_hotels_and_flight_spending // online_shopping_hotels_and_flights_points_lot * online_shopping_hotels_and_flight_points_multiplier
+			#need to pass back value to backend
+			self.halt()
+		@Rule(AS.v << SpendingInput(data__retail_spending = MATCH.data__retail_spending),
+			TEST(lambda data__retail_spending: data__retail_spending >= 0))
+		def reward_retail(self, v):
+			self.reward_retail = data__retail_spending // retail_shopping_points_lot * retail_shopping_points_multiplier
+			#need to pass back value to backend
+			self.halt()
 				
         cardid = str(row['credit_card_id'][0])
         credit_card_name = str(row['credit_card_name'][0])
