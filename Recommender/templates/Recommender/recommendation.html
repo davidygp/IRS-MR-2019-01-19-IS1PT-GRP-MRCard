@@ -26,9 +26,9 @@
                         <li>{{ preferred_miles_amount }}</li>
                         <li>{{ preferred_points_amount }}</li>
                     </ul>
-                    {% if preferred_credit_card_exist == 1 %}
+                    {% if preferred_credit_card_exists == 1 %}
                         <button type="button" class="my-btn my-btn-lg my-btn-block my-btn-outline-primary"
-                            onclick="location.href='{{ preferred_official_link }}'">Apply
+                            onclick="location.href='{{ preferred_credit_card_official_link }}'">Apply
                     </button>
                     {% else %}
                     <button type="button" class="my-btn my-btn-lg my-btn-block my-btn-outline-primary"
@@ -49,7 +49,7 @@
                         <li>{{ ideal_points_amount }}</li>
                     </ul>
                     <button type="button" class="my-btn my-btn-lg my-btn-block my-btn-outline-primary"
-                            onclick="location.href='{{ ideal_official_link }}'">Apply
+                            onclick="location.href={{ ideal_credit_card_official_link }}">Apply
                     </button>
                 </div>
             </div>
