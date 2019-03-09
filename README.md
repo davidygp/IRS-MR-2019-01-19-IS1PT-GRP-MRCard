@@ -46,21 +46,21 @@ $ sudo apt-get install python-clips clips build-essential libssl-dev libffi-dev 
 $ pip install pyclips flask flask-socketio eventlet simplejson pandas
 
 # SECTION 6 : PROJECT REPORT / PAPER
-<Github File Link> : https://github.com/telescopeuser/Workshop-Project-Submission-Template/blob/master/ProjectReport/Project%20Report%20HDB-BTO.pdf
+<Github File Link>  https://github.com/telescopeuser/Workshop-Project-Submission-Template/blob/master/ProjectReport/Project%20Report%20HDB-BTO.pdf
 
 Recommended Sections for Project Report / Paper:
 
-Executive Summary / Paper Abstract
-Sponsor Company Introduction (if applicable)
-Business Problem Background
-Project Objectives & Success Measurements
-Project Solution (To detail domain modelling & system design.)
-Project Implementation (To detail system development & testing approach.)
-Project Performance & Validation (To prove project objectives are met.)
-Project Conclusions: Findings & Recommendation
-List of Abbreviations (if applicable)
-References (if applicable)
-SECTION 7 : MISCELLANEOUS
++ Executive Summary / Paper Abstract
++ Business Problem Background
++ Project Objectives & Success Measurements
++ Project Solution (To detail domain modelling & system design.)
++ Project Implementation (To detail system development & testing approach.)
++ Project Performance & Validation (To prove project objectives are met.)
++ Project Conclusions: Findings & Recommendation
++ List of Abbreviations (if applicable)
++ References (if applicable)
+
+# SECTION 7 : MISCELLANEOUS
 HDB_BTO_SURVEY.xlsx
 Results of survey
 Insights derived, which were subsequently used in our system
