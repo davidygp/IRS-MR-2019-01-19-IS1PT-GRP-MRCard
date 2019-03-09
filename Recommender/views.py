@@ -10,24 +10,31 @@ from .rules import return_eligibile_credit_card_ids, return_preferred_credit_car
 debug = True
 
 # Functions used below
-def retrieve_data_or_set_to_default(input_dict, default_dict):
+def retrieve_data_or_set_to_default(input_dict, default_dict, expecting_lists=False):
     ''' 
     Given a dictionary of data (e.g. from the HTML POST request) and a default dictionary.
     For fields that are not in the dictionary of data but in the default dictionary, assign the new fields as the default.
     '''
     output_dict = {}
     for key in default_dict.keys():
-        try:
-            val = input_dict[key] # Check if key exists
-            print(val, type(val), type(val)==list)
-            if len(val) == 0: # If it is empty
+        if expecting_lists:
+            try: 
+                val = input_dict.getlist(key) # Check if key exists (for list)
+                if len(val) == 0:
+                    output_dict[key] = default_dict[key]
+                else:
+                    output_dict[key] = [convert_string_to_int_or_float(x) for x in val]
+            except:
                 output_dict[key] = default_dict[key]
-            elif type(val)==list: #If the value is a list
-                output_dict[key] = val 
-            else: # If its not a list
-                output_dict[key] = convert_string_to_int_or_float(val) 
-        except:
-            output_dict[key] = default_dict[key] 
+        else:
+            try:
+                val = input_dict[key] # Check if key exists (for non-list)
+                if len(val) == 0: # If it is empty
+                    output_dict[key] = default_dict[key]
+                else:
+                    output_dict[key] = convert_string_to_int_or_float(val) 
+            except:
+                output_dict[key] = default_dict[key] 
     return output_dict
 
 def convert_string_to_int_or_float(string):
@@ -66,12 +73,21 @@ def retrieve_subset_out_of_query_set(query_set, list_of_keys):
         subset_of_query_set.append(sub_dictionary)
     return subset_of_query_set
 
-def map_POST_to_session(request):
+def map_POST_to_session(request, expecting_lists=False):
     key_list = list(request.POST.keys())
     key_list.remove('csrfmiddlewaretoken')
     for key in key_list:
-        request.session[key] = request.POST[key] 
+        if expecting_lists:
+            request.session[key] = request.POST.getlist(key)
+        else:
+            request.session[key] = request.POST[key] 
 
+def return_subset_out_of_spending_rewards_info_by_cardid(list_of_dict_of_credit_card_spending_rewards_info, list_of_card_ids):
+    subset_of_spending_rewards_info = []
+    for credit_card in list_of_dict_of_credit_card_spending_rewards_info:
+        if str(credit_card['credit_card_id'][0]) in list_of_card_ids or credit_card['credit_card_id'][0] in list_of_card_ids:
+            subset_of_spending_rewards_info.append(credit_card)
+    return subset_of_spending_rewards_info
 
 # Views Proper #
 def eligibility(request):
@@ -112,16 +128,12 @@ def preferences(request):
 
 def spending_checkbox(request):
     # This is the third html page
-    map_POST_to_session(request) # Save the POST data into the session
+    map_POST_to_session(request, True) # Save the POST data into the session
     
     ### Process Data to determine preference ###
     ## Retrieve Preference info ##
     print(request.POST)
-    print(request.POST.get('preferred_bank'))
-    print(request.POST['preferred_bank'])
-    preference_info = request.POST
-    #{'preferred_bank':request.POST['preferred_bank'], 'preferred_card_type':request.POST['preferred_card_type'],'preferred_rewards_type':request.POST['preferred_rewards_type']} 
-    #retrieve_data_or_set_to_default(request.POST, preference_info_default_dict)
+    preference_info = retrieve_data_or_set_to_default(request.POST, preference_info_default_dict, True)
     ## Retrieve Credit Card preference related info ##
     all_credit_card_info = CreditCards.objects.values()
     credit_card_preference_info = retrieve_subset_out_of_query_set(all_credit_card_info, credit_card_preference_list)
@@ -166,21 +178,36 @@ def recommendation(request):
     # This is the last html page
     map_POST_to_session(request) # Save the POST data into the session
     
-    ## Retrieve Preference info & process it ##
-    #TODO# (DY)
-    #preprocessed_preference_info = request.session[''] # Do after JH confirms format
-    processed_preference_info = {'preferred_bank_rank':['dbs','ocbc','uob'],
-                                    'preferred_card_type':['visa','mastercard'],
-                                    'cashback_preference_rank':1,
-                                    'miles_preference_rank':2,
-                                    'points_preference_rank':3} # To-be changed #
+    ## Retrieve Preference info  ##
+    rewards_type_preference_info = {'preferred_rewards_type': request.session['preferred_rewards_type']}
+    ## Retrieve Eligible Credit Cards ##
+    eligible_credit_card_ids = request.session['eligible_credit_card_ids']
+    ## Retrieve Preferred Credit Cards ##
+    preferred_credit_card_ids = request.session['preferred_credit_card_ids']
     ## Retrieve Spending Amounts info ##
     spending_amounts_info = retrieve_data_or_set_to_default(request.POST, spending_amounts_default_dict)
-    print(spending_amounts_info)
     ## Retrieve Credit Card cashback/miles/points info ##
     all_credit_card_info = CreditCards.objects.values()
-    credit_card_spending_info = retrieve_subset_out_of_query_set(all_credit_card_info, credit_card_spending_list)
-    #print(credit_card_spending_info)
+    credit_card_spending_rewards_info = retrieve_subset_out_of_query_set(all_credit_card_info, credit_card_spending_rewards_list)
+    ## Only provide to the Rules the cards that are Eligible and Eligible & Preferred ##
+    eligible_and_preferred_credit_card_ids = [x for x in eligible_credit_card_ids if x in preferred_credit_card_ids]
+    ideal_credit_card_spending_rewards_info = return_subset_out_of_spending_rewards_info_by_cardid(credit_card_spending_rewards_info, eligible_credit_card_ids)
+    preferred_credit_card_spending_rewards_info = return_subset_out_of_spending_rewards_info_by_cardid(credit_card_spending_rewards_info, eligible_and_preferred_credit_card_ids)
+    if debug:
+        print("---- Prefered Rewards Type ----")
+        print(rewards_type_preference_info)
+        print("---- Eligible Credit Card IDs ----")
+        print(eligible_credit_card_ids)
+        print("---- Preferred Credit Card IDs ----")
+        print(preferred_credit_card_ids)
+        print("---- Spending Amounts Info ----")
+        print(spending_amounts_info)
+        print("---- Eligible and Preferred Credit Card IDs ----")
+        print(eligible_and_preferred_credit_card_ids)
+        print("---- Ideal Credit Card Rewards Info ----")
+        print(ideal_credit_card_spending_rewards_info)
+        print("---- Preferred Credit Cards Rewards Info ----")
+        print(preferred_credit_card_spending_rewards_info)
     ## Calculate the Ideal & Preferred Credit Card ##
     #TODO# (LD/YZ)
     Recommendation = {'ideal_credit_card':'placeholder ideal credit card',
