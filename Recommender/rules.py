@@ -37,7 +37,7 @@ def return_eligibile_credit_card_ids(dict_of_personal_info, list_of_dict_of_cred
 
             # Applicant is wrong gender
             @Rule(AS.v << Person(data__gender = MATCH.data__gender),
-                TEST(lambda data__gender: (data__gender == 'male') & (gender__req == 'F')))
+                TEST(lambda data__gender: (data__gender == 'male') & (gender__req == 'F' or gender__req == 'f')))
             def wrong_gender(self):
                 print("Cardid %s, Wrong gender, this card is only for %s" %(cardid, gender__req))
                 self.eligible_status = False
