@@ -16,11 +16,11 @@ Our team learned a lot in the process of working on this project. We got the cha
 
 | Official Full Name | Student ID (MTech Applicable)| Work Items (Who Did What) | Email (Optional) |
 | :---: | :---: | :---: | :---: |
-| LI DUO  | A0195364W | asdfasdfa | e0384995@u.nus.edu |
-| LIM CHONG SENG HERMANN | A0195392U | asfasf | e0385023@u.nus.edu |
-| LU JIAHAO | A0091835Y | asdfasf | e0384293@u.nus.edu |
-| YAM GUI PENG DAVID | A0195315A | asfasf | e0384946@u.nus.edu |
-| ZHAO YAZHI | A0195305E | ASDFASD | e0384936@u.nus.edu |
+| LI DUO  | A0195364W | Business idea generation, domain expert interview, reward rules implementation and project report | e0384995@u.nus.edu |
+| LIM CHONG SENG HERMANN | A0195392U | Business idea generation, project report and testing execution | e0385023@u.nus.edu |
+| LU JIAHAO | A0091835Y | Business idea generation, UI design, domain expert interview, project report | e0384293@u.nus.edu |
+| YAM GUI PENG DAVID | A0195315A | Business idea generation, overall rules implementation, database and backend logic, overall integration and project report | e0384946@u.nus.edu |
+| ZHAO YAZHI | A0195305E | Business idea generation, cashback rules implementation, survey result analysis, fuzzy logic implementation and project report | e0384936@u.nus.edu |
 
 # SECTION 4 : VIDEO OF SYSTEM MODELLING & USE CASE DEMO
 Sudoku AI Solver
