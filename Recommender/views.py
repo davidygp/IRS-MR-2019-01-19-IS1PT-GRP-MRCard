@@ -238,7 +238,10 @@ def recommendation(request):
         print("---- Ideal Credit Card ----")
         print(ideal_credit_card_list)
         print("---- Preferred Credit Card ----")
-        print(preferred_credit_card_list)
+        if len(preferred_credit_card_ids) == 1:
+            print(preferred_credit_card_list)
+        else:
+            print("There are no suitable Credit Cards based on user's preferences")
      
     Recommendation = {'ideal_credit_card_name':ideal_credit_card_name,
                         'preferred_credit_card_name':preferred_credit_card_name,
