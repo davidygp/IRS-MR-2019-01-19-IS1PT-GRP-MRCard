@@ -28,11 +28,11 @@
                     </ul>
                     {% if preferred_credit_card_exist == 1 %}
                         <button type="button" class="my-btn my-btn-lg my-btn-block my-btn-outline-primary"
-                            onclick="location.href='http://www.google.com'">Apply
+                            onclick="location.href='{{ preferred_official_link }}'">Apply
                     </button>
                     {% else %}
                     <button type="button" class="my-btn my-btn-lg my-btn-block my-btn-outline-primary"
-                            onclick="location.href='http://www.google.com'" disabled>Apply
+                            onclick="location.href='#'" disabled>Apply
                     </button>
                     {% endif %}
                 </div>
@@ -49,7 +49,7 @@
                         <li>{{ ideal_points_amount }}</li>
                     </ul>
                     <button type="button" class="my-btn my-btn-lg my-btn-block my-btn-outline-primary"
-                            onclick="location.href='http://www.google.com'">Apply
+                            onclick="location.href='{{ ideal_official_link }}'">Apply
                     </button>
                 </div>
             </div>
