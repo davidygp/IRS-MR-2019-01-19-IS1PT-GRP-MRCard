@@ -13,6 +13,7 @@ credit_card_eligibility_list = ['credit_card_id',
 credit_card_preference_list = ['credit_card_id',
 'credit_card_name',
 'bank_name',
+'card_type',
 'payment_networks']
 credit_card_spending_rewards_list = ['credit_card_id',
 'credit_card_name',
