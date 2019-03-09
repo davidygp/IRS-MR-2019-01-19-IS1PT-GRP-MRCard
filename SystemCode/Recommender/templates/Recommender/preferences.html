@@ -1,0 +1,104 @@
+{% extends "Recommender/base.html" %}
+
+{% block form %}
+    <form action="{% url 'Recommender:spending_checkbox' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-row">
+            <label class="label label--block">Preferred Bank</label>
+            <div class="value">
+                <div class="my-input-group custom-control custom-checkbox">
+                    <div class="custom-control custom-checkbox mr-4">
+                        <input class="custom-control-input" id="dbs" type="checkbox" name="preferred_bank" value="dbs">
+                        <label class="custom-control-label" for="dbs">DBS</label>
+                    </div>
+                    <div class="custom-control custom-checkbox mr-4">
+                        <input class="custom-control-input" id="ocbc" type="checkbox" name="preferred_bank"
+                               value="ocbc">
+                        <label class="custom-control-label" for="ocbc">OCBC</label>
+                    </div>
+                    <div class="custom-control custom-checkbox mr-4">
+                        <input class="custom-control-input" id="hsbc" type="checkbox" name="preferred_bank"
+                               value="hsbc">
+                        <label class="custom-control-label" for="hsbc">HSBC</label>
+                    </div>
+                    <div class="custom-control custom-checkbox mr-4">
+                        <input class="custom-control-input" id="citibank" type="checkbox" name="preferred_bank"
+                               value="citibank">
+                        <label class="custom-control-label" for="citibank">Citibank</label>
+                    </div>
+                    <div class="custom-control custom-checkbox mr-4">
+                        <input class="custom-control-input" id="maybank" type="checkbox" name="preferred_bank"
+                               value="maybank">
+                        <label class="custom-control-label" for="maybank">Maybank</label>
+                    </div>
+                    <div class="custom-control custom-checkbox mr-4">
+                        <input class="custom-control-input" id="uob" type="checkbox" name="preferred_bank" value="uob">
+                        <label class="custom-control-label" for="uob">UOB</label>
+                    </div>
+                    <div class="custom-control custom-checkbox mr-4">
+                        <input class="custom-control-input" id="standard chartered" type="checkbox"
+                               name="preferred_bank" value="standard chartered">
+                        <label class="custom-control-label" for="standard chartered">Standard Chartered</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- preferred_card_type -->
+        <div class="form-row">
+            <label class="label label--block">Preferred Card Payment Network</label>
+            <div class="value">
+                <div class="my-input-group custom-control custom-checkbox">
+                    <div class="custom-control custom-checkbox mr-4">
+                        <input class="custom-control-input" id="visa" type="checkbox" name="preferred_card_type"
+                               value="visa">
+                        <label class="custom-control-label" for="visa">Visa</label>
+                    </div>
+                    <div class="custom-control custom-checkbox mr-4">
+                        <input class="custom-control-input" id="mastercard" type="checkbox" name="preferred_card_type"
+                               value="mastercard">
+                        <label class="custom-control-label" for="mastercard">MasterCard</label>
+                    </div>
+                    <div class="custom-control custom-checkbox mr-4">
+                        <input class="custom-control-input" id="american express" type="checkbox"
+                               name="preferred_card_type" value="american express">
+                        <label class="custom-control-label" for="american express">American Express</label>
+                    </div>
+                    <div class="custom-control custom-checkbox mr-4">
+                        <input class="custom-control-input" id="jcb" type="checkbox" name="preferred_card_type"
+                               value="jcb">
+                        <label class="custom-control-label" for="jcb">JCB</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- preferred_rewards_type -->
+        <div class="form-row">
+            <label class="label label--block">Preferred Rewards Type</label>
+            <div class="value">
+                <div class="my-input-group custom-control custom-checkbox">
+                    <div class="custom-control custom-checkbox mr-4">
+                        <input class="custom-control-input" id="cashback" type="checkbox" name="preferred_rewards_type"
+                               value="cashback">
+                        <label class="custom-control-label" for="cashback">Cashback</label>
+                    </div>
+                    <div class="custom-control custom-checkbox mr-4">
+                        <input class="custom-control-input" id="miles" type="checkbox" name="preferred_rewards_type"
+                               value="miles">
+                        <label class="custom-control-label" for="miles">Miles</label>
+                    </div>
+                    <div class="custom-control custom-checkbox mr-4">
+                        <input class="custom-control-input" id="rewards" type="checkbox" name="preferred_rewards_type"
+                               value="points">
+                        <label class="custom-control-label" for="rewards">Rewards</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-right">
+            <button class="btn btn--radius-2 btn--red" type="submit">Next</button>
+        </div>
+    </form>
+{% endblock %}

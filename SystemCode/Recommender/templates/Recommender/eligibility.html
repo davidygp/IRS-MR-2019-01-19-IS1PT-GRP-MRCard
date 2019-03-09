@@ -1,0 +1,56 @@
+{% extends "Recommender/base.html" %}
+
+{% block form %}
+    <form action="{% url 'Recommender:preferences' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="name">Annual Income</div>
+            <div class="value">
+                <div class="input-group">
+                    <input class="input--style-5" type="number" name="annual_income" placeholder="Your Annual Income"
+                           required>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="name">Age</div>
+            <div class="value">
+                <div class="input-group">
+                    <input class="input--style-5" type="number" name="age" placeholder="Your Age" required/>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <label class="label label--block">Gender</label>
+            <div class="p-t-15">
+                <label class="radio-container m-r-55">Female
+                    <input type="radio" checked="checked" name="gender" value="female"/>
+                    <span class="checkmark"></span>
+                </label>
+                <label class="radio-container">Male
+                    <input type="radio" name="gender" value="male"/>
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="name">Subject</div>
+            <div class="value">
+                <div class="input-group">
+                    <div class="rs-select2 js-select-simple select--no-search">
+                        <select name="citizenship" required>
+                            <option disabled="disabled" selected="selected">Choose option</option>
+                            <option value="singaporean">Singaporean</option>
+                            <option value="pr">Permanent Resident</option>
+                            <option value="foreigner">Foreigner</option>
+                        </select>
+                        <div class="select-dropdown"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-right">
+            <button class="btn btn--radius-2 btn--red" type="submit">Next</button>
+        </div>
+    </form>
+{% endblock %}
