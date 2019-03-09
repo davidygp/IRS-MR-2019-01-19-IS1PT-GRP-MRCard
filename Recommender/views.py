@@ -219,7 +219,7 @@ def recommendation(request):
 
     if len(preferred_credit_card_ids) == 0:
         preferred_credit_card_exists = 0
-        preferred_credit_card_name = "Sorry you did not select a preferred credit card"
+        preferred_credit_card_name = "No available Credit Card"
         preferred_credit_card_official_link = "https://www.google.com"
         preferred_cashback_amount = 0
         preferred_points_amount = 0

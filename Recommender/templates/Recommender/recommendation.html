@@ -1,4 +1,5 @@
 {% extends "Recommender/base.html" %}
+{% load humanize %}
 {% block css %}
     <style>
         .lead {
@@ -22,9 +23,9 @@
                 <div class="my-card-body">
                     <h1 class="card-title pricing-card-title">{{ preferred_credit_card_name|title }}</h1>
                     <ul class="list-unstyled mt-3 mb-4">
-                        <li>Cashback earned: {{ preferred_cashback_amount.value|intcomma }}</li>
-                        <li>Miles earned: {{ preferred_miles_amount.value|intcomma }}</li>
-                        <li>Points earned: {{ preferred_points_amount.value|intcomma }}</li>
+                        <li>Cashback earned: {{ preferred_cashback_amount|intcomma }}</li>
+                        <li>Miles earned: {{ preferred_miles_amount|intcomma }}</li>
+                        <li>Points earned: {{ preferred_points_amount|intcomma }}</li>
                     </ul>
                     {% if preferred_credit_card_exists == 1 %}
                         <button type="button" class="my-btn my-btn-lg my-btn-block my-btn-outline-primary"
@@ -44,9 +45,9 @@
                 <div class="my-card-body">
                     <h1 class="card-title pricing-card-title">{{ ideal_credit_card_name|title }}</h1>
                     <ul class="list-unstyled mt-3 mb-4">
-                        <li>Cashback earned: {{ ideal_cashback_amount.value|intcomma }}</li>
-                        <li>Miles earned: {{ ideal_miles_amount.value|intcomma }}</li>
-                        <li>Points earned: {{ ideal_points_amount.value|intcomma }}</li>
+                        <li>Cashback earned: {{ ideal_cashback_amount|intcomma }}</li>
+                        <li>Miles earned: {{ ideal_miles_amount|intcomma }}</li>
+                        <li>Points earned: {{ ideal_points_amount|intcomma }}</li>
                     </ul>
                     <button type="button" class="my-btn my-btn-lg my-btn-block my-btn-outline-primary"
                             onclick="location.href='{{ ideal_credit_card_official_link }}'">Apply
