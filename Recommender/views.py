@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import CreditCards
 from .config import *
-from .rules import return_eligibile_credit_card_ids, return_preferred_credit_card_ids, return_eligible_spendings_for_breakdown
+from .rules import *
 
 debug = True
 
@@ -209,25 +209,65 @@ def recommendation(request):
         print("---- Preferred Credit Cards Rewards Info ----")
         print(preferred_credit_card_spending_rewards_info)
     ## Calculate the Ideal & Preferred Credit Card ##
-    #TODO# (LD/YZ)
-    Recommendation = {'ideal_credit_card':'placeholder ideal credit card',
-                        'preferred_credit_card':'placeholder preferred credit card',
-                        'ideal_cashback_amount':1234,
-                        'ideal_miles_amount':5678,
-                        'ideal_points_amount':9012,
-                        'preferred_cashback_amount':1234,
-                        'preferred_miles_amount':5678,
-                        'preferred_points_amount':9012} # Get from LD/YZ
+    ideal_credit_card_list = return_best_credit_card(spending_amounts_info, ideal_credit_card_spending_rewards_info, rewards_type_preference_info)
+    ideal_credit_card_name = ideal_credit_card_list[0]
+    ideal_credit_card_official_link = ideal_credit_card_list[1]
+    ideal_cashback_amount = ideal_credit_card_list[2]
+    ideal_points_amount = ideal_credit_card_list[3]
+    ideal_miles_amount = ideal_credit_card_list[4]
+    ideal_annual_fee = ideal_credit_card_list[5]
+
+    if len(preferred_credit_card_ids) == 0:
+        preferred_credit_card_exists = 0
+        preferred_credit_card_name = "Sorry you did not select a preferred credit card"
+        preferred_credit_card_official_link = "https://www.google.com"
+        preferred_cashback_amount = 0
+        preferred_points_amount = 0
+        preferred_miles_amount = 0
+        preferred_annual_fee = 0
+    else:
+        preferred_credit_card_exists = 1
+        preferred_credit_card_list = return_best_credit_card(spending_amounts_info, preferred_credit_card_spending_rewards_info, rewards_type_preference_info) 
+        preferred_credit_card_name = preferred_credit_card_list[0]
+        preferred_credit_card_official_link = preferred_credit_card_list[1]
+        preferred_cashback_amount = preferred_credit_card_list[2]
+        preferred_points_amount = preferred_credit_card_list[3]
+        preferred_miles_amount = preferred_credit_card_list[4]
+        preferred_annual_fee = preferred_credit_card_list[5]
+    if debug:
+        print("---- Ideal Credit Card ----")
+        print(ideal_credit_card_list)
+        print("---- Preferred Credit Card ----")
+        print(preferred_credit_card_list)
+     
+    Recommendation = {'ideal_credit_card_name':ideal_credit_card_name,
+                        'preferred_credit_card_name':preferred_credit_card_name,
+                        'ideal_credit_card_official_link':ideal_credit_card_official_link,
+                        'ideal_cashback_amount':ideal_cashback_amount,
+                        'ideal_miles_amount':ideal_miles_amount,
+                        'ideal_points_amount':ideal_points_amount,
+                        'ideal_annual_fee':ideal_annual_fee,
+                        'preferred_credit_card_exists':preferred_credit_card_exists,
+                        'preferred_credit_card_official_link':preferred_credit_card_official_link,
+                        'preferred_cashback_amount':preferred_cashback_amount,
+                        'preferred_miles_amount':preferred_miles_amount,
+                        'preferred_points_amount':preferred_points_amount,
+                        'preferred_annual_fee':preferred_annual_fee}
 
     context = {
-    'ideal_credit_card':Recommendation['ideal_credit_card'],
-    'preferred_credit_card':Recommendation['preferred_credit_card'],
+    'ideal_credit_card_name':Recommendation['ideal_credit_card_name'],
+    'preferred_credit_card_name':Recommendation['preferred_credit_card_name'],
+    'ideal_credit_card_official_link':Recommendation['ideal_credit_card_official_link'],
     'ideal_cashback_amount':Recommendation['ideal_cashback_amount'],
     'ideal_miles_amount':Recommendation['ideal_miles_amount'],
     'ideal_points_amount':Recommendation['ideal_points_amount'],
+    'ideal_annual_fee':Recommendation['ideal_annual_fee'],
+    'preferred_credit_card_exists':Recommendation['preferred_credit_card_exists'],
+    'preferred_credit_card_official_link':Recommendation['preferred_credit_card_official_link'],
     'preferred_cashback_amount':Recommendation['preferred_cashback_amount'],
     'preferred_miles_amount':Recommendation['preferred_miles_amount'],
-    'preferred_points_amount':Recommendation['preferred_points_amount']
+    'preferred_points_amount':Recommendation['preferred_points_amount'],
+    'preferred_annual_fee':Recommendation['preferred_annual_fee']
     }
     return render(request, 'Recommender/recommendation.html', context)
 
