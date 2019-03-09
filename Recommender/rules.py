@@ -1,5 +1,6 @@
 from random import choice
 from pyknow import *
+from .fuzzy_logic import *
 
 def return_eligibile_credit_card_ids(dict_of_personal_info, list_of_dict_of_credit_card_eligibility_info, debug=False):
 
@@ -786,25 +787,48 @@ def return_reward_value(dict_of_spending_amounts_info, dict_of_preferred_credit_
     
     return min(overall_points_cap, reward_value)
 
-
-def fuzzy_logic_convert_points_to_cashback_value(reward_value, gradient, intercept):
-    cashback_equivalent = gradient*reward_value + intercept
+def fuzzy_logic_convert_points_to_cashback_value(reward_value, bank_name):
+    if bank_name == 'dbs':
+        cashback_equivalent = DBS_points_to_cashback(reward_value)
+    elif bank_name == 'citibank':
+        cashback_equivalent = citibank_points_to_cashback(reward_value)
+    elif bank_name == 'standard chartered':
+        cashback_equivalent = standardchartered_points_to_cashback(reward_value)
+    elif bank_name == 'uob':
+        cashback_equivalent = uob_points_to_cashback(reward_value)
+    elif bank_name == 'maybank':
+        cashback_equivalent = maybank_points_to_cashback(reward_value)
+    elif bank_name == 'hsbc':
+        cashback_equivalent = HSBC_points_to_cashback(reward_value)
+    elif bank_name == 'ocbc':
+        cashback_equivalent = ocbc_points_to_cashback(reward_value)
+    else:
+        print("NONE OF THEM")
+        cashback_equivalent = -1
     return cashback_equivalent
 
-
-def fuzzy_logic_convert_miles_to_cashback_value(reward_value, points_to_miles_conversion, gradient, intercept):
-    cashback_equivalent = gradient*reward_value*points_to_miles_conversion + intercept
+def fuzzy_logic_convert_miles_to_cashback_value(reward_value, points_to_miles_conversion, bank_name):
+    if bank_name == 'dbs':
+        cashback_equivalent = DBS_miles_to_cashback(reward_value*points_to_miles_conversion)
+    elif bank_name == 'citibank':
+        cashback_equivalent = citibank_miles_to_cashback(reward_value*points_to_miles_conversion)
+    elif bank_name == 'standard chartered':
+        cashback_equivalent = standardchartered_miles_to_cashback(reward_value*points_to_miles_conversion)
+    elif bank_name == 'uob':
+        cashback_equivalent = uob_miles_to_cashback(reward_value*points_to_miles_conversion)
+    elif bank_name == 'maybank':
+        cashback_equivalent = maybank_miles_to_cashback(reward_value*points_to_miles_conversion)
+    elif bank_name == 'hsbc':
+        cashback_equivalent = HSBC_miles_to_cashback(reward_value*points_to_miles_conversion)
+    elif bank_name == 'ocbc':
+        cashback_equivalent = ocbc_miles_to_cashback(reward_value*points_to_miles_conversion)
+    else:
+        print("NONE OF THEM")
+        cashback_equivalent = -1
     return cashback_equivalent
 
-
-def return_compare_by_preference(points_to_miles_conversion, points_split_ratio, cashback_value, reward_value, dict_of_cashback_points_miles_preference_info, debug=False):
+def return_compare_by_preference(points_to_miles_conversion, points_split_ratio, cashback_value, reward_value, bank_name, dict_of_cashback_points_miles_preference_info, debug=False):
     preferred_rewards_type = dict_of_cashback_points_miles_preference_info['preferred_rewards_type']
-    
-    points_to_cashback_gradient = 0.02
-    points_to_cashback_intercept = 0
-    miles_to_cashback_gradient = 0.025
-    miles_to_cashback_intercept = 0
-    #points_split_ratio = 0.5
         
     ## Calculate for only ONE preference: cashback/ points/ miles ##
     if set(preferred_rewards_type) == set(['cashback']):
@@ -816,9 +840,9 @@ def return_compare_by_preference(points_to_miles_conversion, points_split_ratio,
     elif set(preferred_rewards_type) == set(['miles']):
         if debug: print("Miles Preference, %f" %(reward_value*points_to_miles_conversion))
         return reward_value*points_to_miles_conversion
-    
-    points_cashback_equivalent = fuzzy_logic_convert_points_to_cashback_value(reward_value, points_to_cashback_gradient, points_to_cashback_intercept)
-    miles_cashback_equivalent =  fuzzy_logic_convert_miles_to_cashback_value(reward_value*points_to_miles_conversion, points_to_miles_conversion, miles_to_cashback_gradient, miles_to_cashback_intercept)
+    print("LOOK HERE 2", bank_name)
+    points_cashback_equivalent = fuzzy_logic_convert_points_to_cashback_value(reward_value, bank_name)
+    miles_cashback_equivalent =  fuzzy_logic_convert_miles_to_cashback_value(reward_value*points_to_miles_conversion, points_to_miles_conversion, bank_name)
 
     ## Calculate for TWO preference: any 2 out of cashback/ points/ miles ##
     if set(preferred_rewards_type) == set(['cashback', 'points']):
@@ -853,11 +877,13 @@ def return_best_credit_card(dict_of_spending_amounts_info, dict_of_credit_card_s
         official_link = str(row['official_link'][0])
         points_to_miles_conversion = row['points_to_miles_conversion'][0]
         annual_fee = row['annual_fee'][0]
+        bank_name = row['bank_name'][0]
 
+        print("LOOK HERE", bank_name)
         cashback_value = return_cashback_value(dict_of_spending_amounts_info, row, contactless_CF, debug)
         reward_value =  return_reward_value(dict_of_spending_amounts_info, row, contactless_CF, debug)
 
-        total_cash_val_equivalent = return_compare_by_preference(points_to_miles_conversion, points_split_ratio, cashback_value, reward_value, dict_of_cashback_points_miles_preference_info, debug)
+        total_cash_val_equivalent = return_compare_by_preference(points_to_miles_conversion, points_split_ratio, cashback_value, reward_value, bank_name, dict_of_cashback_points_miles_preference_info, debug)
 
         if debug:
             print("cardid, credit_card_name, official_link, points_to_miles_conversion, points_split_ratio, cashback_value, reward_value, total_cash_val_equivalent")

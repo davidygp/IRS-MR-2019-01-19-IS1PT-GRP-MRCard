@@ -17,6 +17,7 @@ credit_card_preference_list = ['credit_card_id',
 'payment_networks']
 credit_card_spending_rewards_list = ['credit_card_id',
 'credit_card_name',
+'bank_name',
 'multiple_levels',
 'official_link',
 'foreign_currency_transaction_fee',
