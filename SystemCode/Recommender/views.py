@@ -209,7 +209,7 @@ def recommendation(request):
         print("---- Preferred Credit Cards Rewards Info ----")
         print(preferred_credit_card_spending_rewards_info)
     ## Calculate the Ideal & Preferred Credit Card ##
-    ideal_credit_card_list = return_best_credit_card(spending_amounts_info, ideal_credit_card_spending_rewards_info, rewards_type_preference_info)
+    ideal_credit_card_list = return_best_credit_card(spending_amounts_info, ideal_credit_card_spending_rewards_info, {'preferred_rewards_type':['cashback', 'points', 'miles']})
     ideal_credit_card_name = ideal_credit_card_list[0]
     ideal_credit_card_official_link = ideal_credit_card_list[1]
     ideal_cashback_amount = ideal_credit_card_list[2]
