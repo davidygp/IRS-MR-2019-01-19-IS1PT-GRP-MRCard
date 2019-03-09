@@ -58,8 +58,9 @@
 }
 
 .my-btn-outline-primary.disabled, .my-btn-outline-primary:disabled {
-  color: #007bff;
-  background-color: transparent;
+  color: #5d5d5d;
+  background-color: #C8D2DA;
+  border-color: #6c757d;
 }
 
 .my-btn-outline-primary:not(:disabled):not(.disabled):active, .my-btn-outline-primary:not(:disabled):not(.disabled).active,
