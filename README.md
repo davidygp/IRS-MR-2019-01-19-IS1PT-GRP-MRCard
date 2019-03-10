@@ -28,30 +28,22 @@ Sudoku AI Solver
 Note: It is not mandatory for every project member to appear in video presentation; Presentation by one project member is acceptable. More reference video presentations here
 
 # SECTION 5 : USER GUIDE
-<Github File Link> : https://github.com/telescopeuser/Workshop-Project-Submission-Template/blob/master/UserGuide/User%20Guide%20HDB-BTO.pdf
+[ 1 ] To run the system in any machine with anaconda 3 installed
+$ git clone https://github.com/davidygp/IRS-MR-2019-01-19-IS1PT-GRP-MRCard
+$ cd ./IRS-MR-2019-01-19-IS1PT-GRP-MRCard/SystemCode
+$ source activate ./venv/MRCard-env
+(MRCard-env) $ python manage.py runserver
+Go to URL using web browser http://127.0.0.1:8000/
+$ (MRCard-env) $ source deactivate
 
-[ 1 ] To run the system using iss-vm
-download pre-built virtual machine from http://bit.ly/iss-vm
-
-start iss-vm
-
-open terminal in iss-vm
-
-$ git clone https://github.com/telescopeuser/Workshop-Project-Submission-Template.git
-
-$ source activate iss-env-py2
-
-(iss-env-py2) $ cd Workshop-Project-Submission-Template/SystemCode/clips
-
-(iss-env-py2) $ python app.py
-
-Go to URL using web browser http://0.0.0.0:5000 or http://127.0.0.1:5000
-
-[ 2 ] To run the system in other/local machine:
-Install additional necessary libraries. This application works in python 2 only.
-$ sudo apt-get install python-clips clips build-essential libssl-dev libffi-dev python-dev python-pip
-
-$ pip install pyclips flask flask-socketio eventlet simplejson pandas
+[ 2 ] To run the system in other/local machine: Install additional necessary libraries. This application works in python 3 only.
+$ pip install anaconda 3 
+$ git clone https://github.com/davidygp/IRS-MR-2019-01-19-IS1PT-GRP-MRCard
+$ cd ./IRS-MR-2019-01-19-IS1PT-GRP-MRCard/SystemCode
+$ source activate ./venv/MRCard-env
+(MRCard-env) $ python manage.py runserver
+Go to URL using web browser http://127.0.0.1:8000/
+$ (MRCard-env) $ source deactivate
 
 # SECTION 6 : PROJECT REPORT / PAPER
 <Github File Link>  https://github.com/telescopeuser/Workshop-Project-Submission-Template/blob/master/ProjectReport/Project%20Report%20HDB-BTO.pdf
@@ -61,14 +53,13 @@ Recommended Sections for Project Report / Paper:
 + Executive Summary / Paper Abstract
 + Business Problem Background
 + Project Objectives & Success Measurements
-+ Project Solution (To detail domain modelling & system design.)
-+ Project Implementation (To detail system development & testing approach.)
-+ Project Performance & Validation (To prove project objectives are met.)
++ Project Solution
++ Project Performance & Validation
 + Project Conclusions: Findings & Recommendation
-+ List of Abbreviations (if applicable)
-+ References (if applicable)
++ List of Abbreviations
++ References
 
 # SECTION 7 : MISCELLANEOUS
-HDB_BTO_SURVEY.xlsx
-Results of survey
-Insights derived, which were subsequently used in our system
+MRCard Survey Result.xlsx
++ Results of survey
++ Insights derived, which helped on features selection that are subsequently used in our system
