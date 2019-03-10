@@ -4,7 +4,8 @@ from . import views
 
 app_name = 'Recommender'
 urlpatterns = [
-    path('', views.eligibility, name='eligibility'),
+    path('', views.welcome, name='welcome'),
+    path('eligibility/', views.eligibility, name='eligibility'),
     path('preferences/', views.preferences, name='preferences'),
     path('spending_checkbox/', views.spending_checkbox, name='spending_checkbox'),
     path('spending_amount/', views.spending_amount, name='spending_amount'),

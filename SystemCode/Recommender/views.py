@@ -94,6 +94,10 @@ def eligibility(request):
     # This is the first html page
     return render(request, 'Recommender/eligibility.html')
 
+def welcome(request):
+    # This is the first html page
+    return render(request, 'Recommender/welcome.html')
+
 def test(request):
     # This is the first html page
     return render(request, 'Recommender/test.html')
