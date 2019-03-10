@@ -1,0 +1,51 @@
+\documentclass[12pt]{article}
+
+\input{1_header/packages.tex}
+
+\begin{document}
+\input{1_header/title.tex}
+\restoregeometry
+
+\setcounter{tocdepth}{5}
+\tableofcontents
+\pagebreak
+
+% \listoffigures
+% \listoftables
+% \pagebreak
+
+\justify
+
+\section*{Executive Summary}
+\input{2_body/summary.tex}
+\pagebreak
+
+\section{Business Problem Background}
+\input{2_body/background.tex}
+
+% TODO success Measurements
+\section{Objectives \& Success Measurements}
+\input{2_body/objectives.tex}
+
+\section{Solution}
+\input{2_body/solution.tex}
+
+\section{Performance \& Validation}
+\input{2_body/performance.tex}
+
+\section{Conclusions}
+\input{2_body/conclusions.tex}
+
+\section{References}
+\label{sec:ref}
+\printbibliography[heading=none]
+
+\clearpage
+
+\appendix
+\section*{Appendices}
+\addcontentsline{toc}{section}{Appendices}
+\renewcommand{\thesubsection}{\Alph{subsection}}
+\input{3_footer/appendices.tex}
+
+\end{document}
