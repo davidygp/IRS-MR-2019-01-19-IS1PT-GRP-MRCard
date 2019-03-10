@@ -1,5 +1,6 @@
 # SECTION 1 : PROJECT TITLE
 ### MRCard Recommender System
+![alt text](https://github.com/davidygp/IRS-MR-2019-01-19-IS1PT-GRP-MRCard/tree/master/ProjectReport/img/welcome.png)
 
 # SECTION 2 : EXECUTIVE SUMMARY / PAPER ABSTRACT
 With the income of working adults in singapore steadily rising over the years, many people are gaining access to credit cards, especially young working adults. The majority of adults nowadays own at least one or more credit cards, with many others planning to start using credit cards as well. Banks have also been actively coming up with more credit cards and trying and to get consumers to take them up. 
