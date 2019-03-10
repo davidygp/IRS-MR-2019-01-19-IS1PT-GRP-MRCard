@@ -1,5 +1,6 @@
 # SECTION 1 : PROJECT TITLE
 ### MRCard Recommender System
+<img width="812" alt="welcome" src="https://user-images.githubusercontent.com/48171290/54080819-80836a80-4333-11e9-9f1d-7f21123d454f.png">
 
 # SECTION 2 : EXECUTIVE SUMMARY / PAPER ABSTRACT
 With the income of working adults in singapore steadily rising over the years, many people are gaining access to credit cards, especially young working adults. The majority of adults nowadays own at least one or more credit cards, with many others planning to start using credit cards as well. Banks have also been actively coming up with more credit cards and trying and to get consumers to take them up. 
@@ -17,8 +18,8 @@ Our team learned a lot in the process of working on this project. We got the cha
 | Official Full Name | Student ID (MTech Applicable)| Work Items (Who Did What) | Email (Optional) |
 | :---: | :---: | :---: | :---: |
 | LI DUO  | A0195364W | Business idea generation, domain expert interview, reward rules implementation and project report | e0384995@u.nus.edu |
-| LIM CHONG SENG HERMANN | A0195392U | Business idea generation, project report and testing execution | e0385023@u.nus.edu |
-| LU JIAHAO | A0091835Y | Business idea generation, UI design, domain expert interview, project report | e0384293@u.nus.edu |
+| LIM CHONG SENG HERMANN | A0195392U | Business idea generation, project report, project video and testing execution | e0385023@u.nus.edu |
+| LU JIAHAO | A0091835Y | Business idea generation, UI design, domain expert interview, project report and testing execution | e0384293@u.nus.edu |
 | YAM GUI PENG DAVID | A0195315A | Business idea generation, overall rules implementation, database and backend logic, overall integration and project report | e0384946@u.nus.edu |
 | ZHAO YAZHI | A0195305E | Business idea generation, cashback rules implementation, survey result analysis, fuzzy logic implementation and project report | e0384936@u.nus.edu |
 
@@ -28,30 +29,22 @@ Sudoku AI Solver
 Note: It is not mandatory for every project member to appear in video presentation; Presentation by one project member is acceptable. More reference video presentations here
 
 # SECTION 5 : USER GUIDE
-<Github File Link> : https://github.com/telescopeuser/Workshop-Project-Submission-Template/blob/master/UserGuide/User%20Guide%20HDB-BTO.pdf
+[ 1 ] To run the system in any machine with anaconda 3 installed
+$ git clone https://github.com/davidygp/IRS-MR-2019-01-19-IS1PT-GRP-MRCard
+$ cd ./IRS-MR-2019-01-19-IS1PT-GRP-MRCard/SystemCode
+$ source activate ./venv/MRCard-env
+(MRCard-env) $ python manage.py runserver
+Go to URL using web browser http://127.0.0.1:8000/
+$ (MRCard-env) $ source deactivate
 
-[ 1 ] To run the system using iss-vm
-download pre-built virtual machine from http://bit.ly/iss-vm
-
-start iss-vm
-
-open terminal in iss-vm
-
-$ git clone https://github.com/telescopeuser/Workshop-Project-Submission-Template.git
-
-$ source activate iss-env-py2
-
-(iss-env-py2) $ cd Workshop-Project-Submission-Template/SystemCode/clips
-
-(iss-env-py2) $ python app.py
-
-Go to URL using web browser http://0.0.0.0:5000 or http://127.0.0.1:5000
-
-[ 2 ] To run the system in other/local machine:
-Install additional necessary libraries. This application works in python 2 only.
-$ sudo apt-get install python-clips clips build-essential libssl-dev libffi-dev python-dev python-pip
-
-$ pip install pyclips flask flask-socketio eventlet simplejson pandas
+[ 2 ] To run the system in other/local machine: Install additional necessary libraries. This application works in python 3 only.
+$ pip install anaconda 3 
+$ git clone https://github.com/davidygp/IRS-MR-2019-01-19-IS1PT-GRP-MRCard
+$ cd ./IRS-MR-2019-01-19-IS1PT-GRP-MRCard/SystemCode
+$ source activate ./venv/MRCard-env
+(MRCard-env) $ python manage.py runserver
+Go to URL using web browser http://127.0.0.1:8000/
+$ (MRCard-env) $ source deactivate
 
 # SECTION 6 : PROJECT REPORT / PAPER
 <Github File Link>  https://github.com/telescopeuser/Workshop-Project-Submission-Template/blob/master/ProjectReport/Project%20Report%20HDB-BTO.pdf
@@ -61,14 +54,13 @@ Recommended Sections for Project Report / Paper:
 + Executive Summary / Paper Abstract
 + Business Problem Background
 + Project Objectives & Success Measurements
-+ Project Solution (To detail domain modelling & system design.)
-+ Project Implementation (To detail system development & testing approach.)
-+ Project Performance & Validation (To prove project objectives are met.)
++ Project Solution
++ Project Performance & Validation
 + Project Conclusions: Findings & Recommendation
-+ List of Abbreviations (if applicable)
-+ References (if applicable)
++ List of Abbreviations
++ References
 
 # SECTION 7 : MISCELLANEOUS
-HDB_BTO_SURVEY.xlsx
-Results of survey
-Insights derived, which were subsequently used in our system
+MRCard Survey Result.xlsx
++ Results of survey
++ Insights derived, which helped on features selection that are subsequently used in our system
