@@ -7,17 +7,15 @@
 		\caption{System Architecture Diagram}
 		\label{fig:system_architecture_diagram}
 	\end{figure}
-	Figure \ref{fig:system_architecture_diagram} shows the system architecture diagram of our recommender system. It illustrates how the different components interact with each other through the Django web framework. After the user keys in the inputs in the User Interface, it will be passed through the Django framework to the rules engine, PyKnow, which will perform the reasoning portion of the system, for example the calculation of cashback and rewards. The rules engine will then return the results to be matched against the database, with the final recommendation being passed back to the HTML page to be displayed.
+	Figure \ref{fig:system_architecture_diagram} shows the system architecture diagram of our recommender system. It illustrates how the different components interact with each other through the Django web framework. After the user keys in the inputs in the User Interface, it will be passed through the application controller to the rules engine, PyKnow, which will perform the reasoning portion of the system, for example the calculation of cashback and rewards. The rules engine will then return the results to be matched against the database, with the final recommendation being passed back to the HTML page to be displayed.
 
 % subsection system_architecture (end)
 
 \subsection{Project Scope} % (fold)
 \label{sub:project_scope}
-While banks regularly have promotions for their credit cards to try and incentivise consumers to choose them and the additional rewards, our recommender system will only recommend credit cards based on their default rates/fees. This is so that the system can generally be applicable at all periods, regardless of seasonal promotional timeframes.
+While banks regularly have promotions for their credit cards to incentivise consumers to choose them, MRCard will only recommend credit cards based on their non-promotional rates. This is so that the system can generally be applicable at all periods, regardless of seasonal promotional timeframes.
 
-The banks chosen for this project are the main banks operating in Singapore, which covers what the majority of consumers in Singapore are using. This knowledge is also something which we extracted from our survey results.
-
-The banks chosen are DBS, OCBC, UOB, HSBC, Maybank, Citibank and Standard Chartered.
+Nearly 50 credit cards are included and over 90 parameters were considered for each card. The banks chosen for this project are the main banks operating in Singapore, which covers what the majority of consumers in Singapore are using. They are DBS, Citibank, HSBC, Maybank, OCBC, Standard Chartered and UOB. This also matches the knowledge we extracted from our survey results.
 % subsection project_scope (end)
 
 
@@ -26,7 +24,7 @@ The banks chosen are DBS, OCBC, UOB, HSBC, Maybank, Citibank and Standard Charte
 
 	\subsubsection{Eligibility of Users} % (fold)
 	\label{ssub:eligibility_of_users}
-	The major target audience would be the people spending most money in Singapore locally (including online). The user tracks his spending habits with cards (cashless). The user will pay fully before due date, i.e\ no late payment fee was considered.
+	The major target audience would be the people spending most of their money in Singapore locally (including online). The user tracks his spending habits with cards (cashless). The user will pay fully before due date, i.e\ no late payment fee was considered.
 
 	The user is able to successfully apply the card if he reaches the salary requirement (no bad credit history). Although the bank may approve the application even the user does not match the criteria provided by the bank, we still assume the bank would strictly follow the requirement bases on their official website.
 
@@ -46,11 +44,11 @@ The banks chosen are DBS, OCBC, UOB, HSBC, Maybank, Citibank and Standard Charte
 
 	\subsubsection{Highly Personalized} % (fold)
 	\label{ssub:highly_personalized}
-	MRCard is highly personlized for each user, no matter the user is a consumer or a bank.
+	MRCard is highly personalized for each user, no matter the user is a consumer or a bank.
 
-	People from general punlic have their own preferences and spending habits. MRCard would match the user's situation to provide the most recommended card. The user would also get the ideal card based on his spending habits without his preferences constraints. This would provide more useful information which the user may not realize before.
+	Consumers from the general public have their own preferences and spending habits. MRCard would match the user's situation (eligibility, preferences and spending habits) to recommend the most preferred card. The user would also get the ideal card based on his spending habits without considering the constraint of his preferences. This would provide more useful information which the user may not be aware of before.
 
-	As it is also a system can be applied by banks, the bank would get to understand how they should recommend the card based on the consumer's requirement. It would also give the bank a chance to see what their competing product is so they can develop a strategy to get consumers.
+	As it is also a system can be applied by banks, the bank would like to understand how they should recommend a card based on the consumer's requirement. It would also give the bank a chance to see the current products of their competing banks so that they can develop a more effective strategy to get consumers.
 
 	% subsubsection highly_personalized (end)
 
@@ -70,7 +68,7 @@ The banks chosen are DBS, OCBC, UOB, HSBC, Maybank, Citibank and Standard Charte
 
 As \href{https://www.moneysmart.sg/credit-cards}{MoneySmart} only covers most popular credit cards in Singapore, some credit cards may not be included for the recommendation.
 
-To simplify the calculation, only long term major features of the cards were included. Some would be manually converted to cash value for comparison.
+To provide a common basis of comparison between credit cards, we convert cashback, miles and reward points to their cash equivalent.
 
 As there are some special credit cards for specific groups of people, these cards are excluded in the system. The system also excludes all special term for special employee benefits.
 

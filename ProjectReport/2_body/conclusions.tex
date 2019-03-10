@@ -2,27 +2,27 @@
 \subsection{Improvements} % (fold)
 \label{sub:improvements}
 
-With the limited time, our project scope was diminished to a minimum viable product (MVP) level, which is version 1.0. Here is the full scope for the commercial version:
+With the limited time available, our project scope was reduced to delivering an minimum viable product (MVP), which is version 1.0. Show below is an rough plan for the full scope for the commercial version:
 
 \begin{description}[align=left]
-	\item [version 1.1] Include Deposit Account
+	\item [version 1.1] \textbf{Include Deposit Account}
 
-		As most banks have special deposit account interest calculation and it could differ a lot.
+		Most banks include savings/deposit accounts with interest rates based on other factors (bill spending/investments/salary deposit/etc.).
 
-		With deposit account, a better recommendation could be provided based on the user's deposit and salary. This could include what deposit account should be opened to get highest interest by credit salary, save, insure or invest.
+		With savings/deposit account included, a better recommendation can be provided based on the user's deposit, salary and other factors. MRCard would then also recommend deposit account should be opened to get highest interest.
 
 
-	\item [version 1.2] Credit Card Combination
+	\item [version 1.2] \textbf{Credit Card Combination}
 
-		From the survey result, we noticed most people had more than one credit cards. More values may be created if the user can get a recommendation with a combination of credit cards. Our system could be improved to a better result with the credit card combination.
+		From the survey result, we noticed that most people had more than one credit card. Our system could be improved to further optimize a user’s spending with a combination of 2 or more credit cards. However, this would likely greatly increase the complexity of comparisons.
 
-	\item [version 1.3] Credit Card Data
+	\item [version 1.3] \textbf{Credit Card Data}
 
-		We chose to use the long term features of credit cards but many attractive promotion were made by banks. To get better result, an advanced method should be used to scrape the data. Add more data fields like expiring date for promotions should be included for a better recommendation.
+		We chose to only consider non-promotional rates to be generally applicable in the long term. To get a more accurate result, an advanced method should be used to scrape the data to include promotional rates. We would also need to include  data fields like expiring date for promotions. Furthermore, we could add a parameter for the user to decide whether to include promotional rates or not.
 
-	% \item [version 0.5] Fuzzy Logic Improvement
+	\item [version 1.4] \textbf{Fuzzy Logic Improvement}
 
-	% 	For miles cards and rewards cards, the current version 0.1 only includes a basic fuzzy logic is used to estimate the cash value of miles and rewards points. To get a better result, detailed data on miles and rewards points conversion are required to match a better cash value.
+		For miles cards and rewards cards, the current version 1.0 only includes a basic fuzzy logic to estimate the cash value of miles and rewards points. To get more accurate results, detailed data on miles and rewards points conversion is required. We could also include questions on what the user is likely to spend their miles/ rewards points on. (e.g. Do you frequently take business class flights? Which of these categories would you likely spend points on?)
 
 \end{description}
 % subsection improvements (end)

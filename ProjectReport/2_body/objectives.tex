@@ -1,11 +1,11 @@
 %!TEX root = ../Report.tex
 \subsection{Objectives} % (fold)
 \label{sub:objectives}
-	The objective of this project is to create a credit card recommender system that will recommend the most suitable credit card (from major banks in Singapore) to a consumer based on their spending habits and preferences. The system will make use of \textbf{rule-based reasoning} and \textbf{fuzzy logic}, to match the consumer’s input against a database of credit card features. As the system features most of the major banks in Singapore, it should be applicable to almost anyone living in Singapore.
+	The objective of this project is to create a credit card recommendation system (MRCard) that will recommend the most suitable credit card (from major banks in Singapore) to a consumer based on their spending habits and preferences. MRCard will make use of \textbf{rule-based reasoning} and \textbf{fuzzy logic}, to match the consumer’s input against a database of credit card features. As MRCard features most of the major banks in Singapore, it should be applicable to almost anyone living in Singapore.
 
-	The primary target audience of our system are consumers, people from the general public. However, our system can also very much be utilised by banks as a tool for market awareness, evaluation, as well as training.
+	The primary target audience of MRCard are consumers, people from the general public. However, MRCard can also very much be utilised by banks as a tool for market awareness, evaluation, as well as training (An example is given in Scenario 2 in Appendix A).
 
-	By inputting in their preferences and spending habits, our system will be able to analyse and reason based on the inputs, and finally recommend a credit card that is most beneficial to them. Banks can also make use of our system to understand the competition, as well as use it to provide training and reference especially for frontline staff.
+	By inputting in their preferences and spending habits, MRCard will be able to analyse and reason based on the inputs, and finally recommend a credit card that is most beneficial to them. Banks can also make use of MRCard to understand the competition, as well as use it to provide training and reference especially for frontline staff.
 % subsection objectives (end)
 
 \subsection{Success Measurements} % (fold)
@@ -53,7 +53,7 @@
 			\label{fig:knowledge_model}
 		\end{figure}
 
-		The dependency diagram arranges the factors affecting applicant’s choice of credit cards in a hierarchical tree structure. The top most level node represents the description of the proposed system, which in this case, recommends a group of credit cards to the user. This decision can be broken down into multiple layers of inferable sub-goals or sub-factors before arriving at a list of “observables”. These “observables” are gathered from users of the proposed system and they represent their inherent preference. Table \ref{table:exampe_depedency} illustrates an example using the dependency diagram in Figure \ref{fig:system_architecture_diagram}.
+		The dependency diagram arranges the factors affecting user's choice of credit cards in a hierarchical tree structure. The top most level node represents the description of the proposed system, which in this case, recommends a group of credit cards to the user. This decision can be broken down into multiple layers of inferable sub-goals or sub-factors before arriving at a list of “observables”. These “observables” are gathered from users of the proposed system and they represent their inherent preference. Table \ref{table:exampe_depedency} illustrates an example using the dependency diagram in Figure \ref{fig:system_architecture_diagram}.
 
 		The inferable sub-goals together with the “observables” are in fact, derived from the advices and insights provided by the domain expert and following validated by survey results. Full interview transcript and audio, together with the survey results and analysis, are appended in \textit{Appendix C} for submission.
 
@@ -63,9 +63,9 @@
 		\begin{tabular}{|l|p{4cm}|p{9cm}|}
 		\hline
 		\textbf{S/N} & \textbf{Category}   & \textbf{Information}                                                                                  \\ \hline
-		\textbf{1}   & Observable          & A client who spends a lot on dining.                                                                  \\ \hline
-		\textbf{2}   & Inferable Sub-goals & The client in {[}1{]} might be interested in a credit card with Cashback or Reward points for dining. \\ \hline
-		\textbf{3}   & Top-level inference & The sub-goal in {[}2{]} is also one of the main factors that a client choose a suitable credit card.  \\ \hline
+		\textbf{1}   & Observable          & A user who spends a lot on dining.                                                                  \\ \hline
+		\textbf{2}   & Inferable sub-goals & The user in ``1'' might be interested in a credit card with cashback or reward points for dining. He/she might also be only eligible for a given subset of credit cards. \\ \hline
+		\textbf{3}   & Top-level inference & The sub-goal in ``2'' is also one of the main factors that affects a user’s choice of a suitable credit card.  \\ \hline
 		\end{tabular}%
 		}
 		\caption{Example to Show A Part of the Dependency Diagram}
@@ -77,7 +77,7 @@
 	\label{ssub:knowledge_specification}
 		After data is acquired from Banks Credit Card website, the next stage is to transform the unstructured data into decision-making domain knowledge, and this would require to form a calculation logic for different types of credit card.
 
-		Data from the Credit Card Website only mentions the maximum cashback/reward that a client can get, while the terms and conditions specify the criteria and cap for each spending category. Our team did an analysis and establish the formula to calculate cash back or reward points:
+		Data from the Credit Card Website only mentions the maximum cashback/reward that a client can get, while the terms and conditions specify the criteria and cap for each spending category. Our team did an analysis and established the formula to calculate cash back or reward points:
 
 		\lstset{basicstyle=\footnotesize\ttfamily}
 		% \lstset{frame=bottomline}
@@ -85,26 +85,25 @@
 			Cashback of Credit Card =
 
 			IF Minimum Spending is met, THEN
-			$\sum$(min(Credit Card Spending each category * Cash Back Higher Rate,
-					Cap of cashback of the category))
+			(For each category)
+			$\sum$(min(Credit Card Spending * Cashback Higher Rate, Cashback Cap))
 			ElSE
-			$\sum$(min(Credit Card Spending each category * Cash Back Lower Rate,
-					Cap of cashback of the category))
+			$\sum$(min(Credit Card Spending * Cashback Lower Rate, Cashback Cap))
 			END
 
-			Reward Points of Credit Card = $\sum$(Round_Down_To_Nearest_Integer
-			(Credit card each category spending amount/Reward Point Lot)*
-			Reward Point Multiplier)
+			Reward Points of Credit Card = $\sum$((min(Round_Down_To_Nearest_Integer
+			(Credit Card Spending/Reward Points Lot) * Reward Points Multiplier),
+			Reward Points Cap)
 
 			Miles of Credit Card = Reward Points of Credit Card *
-			Reward Point to Miles conversion rate
+			Reward Points to Miles conversion rate
 		\end{lstlisting}
 
-		Based on User’s spending / estimated spending amount on each category, the logic can calculate the maximum Cashback/Reward Points for each credit card, compare and recommend the most suitable one for consumer.
+		Based on the user’s spending or estimated spending amount on each category, the logic can calculate the maximum cashback/reward points for each credit card. These values are used to compare and recommend the most suitable credit card for the user.
 
-		User’s preference would determine which type of credit card the system recommends. If user only choose Cashback Card, the system will only take Cashback card into consideration. If user are open to both Cashback and Reward card, the system will convert the reward points to an equivalent cash value and suggest the most valuable (maximum cashback) card to user.
+		MRCard recommends both an ideal credit card and a preferred credit Card. The user’s preference is only taken into account in determining which type of preferred credit card the system recommends. If the user only chooses a cashback card, MRCard will only take cashback cards into consideration. If the user is open to both cashback and reward cards, the system will convert the reward points to an equivalent cash value and suggest the most valuable (maximum cash equivalent) card to user. MRCard also provides an ideal credit card based solely on the user’s eligibility, disregarding his/her preferences.
 
-		The conversion between Reward Points to Cashback Value is done via Fuzzy logic.
+		The conversion between reward points to equivalent cash value is done via Fuzzy logic.
 
 		\begin{lstlisting}[frame=single, gobble=11, tabsize=4, showstringspaces=false, mathescape]
 			Cash Value = Reward Points / Fuzzy Factor
@@ -114,7 +113,7 @@
 
 	\subsubsection{Knowledge Refinement} % (fold)
 	\label{ssub:knowledge_refinement}
-		The Knowledge Refinement would be an iterative process and it includes model validation and model refinement. For model validation, different sets of test data will be used to run simulation, and the result will be compared with current spending habit data.
+		The Knowledge Refinement is an iterative process and it includes model validation and model refinement. For model validation, different sets of test data will be used to run the simulation, and the result will be compared with current spending habit data.
 
 		For model refinement, certainty factors is included to incorporate the uncertainty of user preference and change of terms and conditions of the card. The model needs to be revised periodically with live data.
 
