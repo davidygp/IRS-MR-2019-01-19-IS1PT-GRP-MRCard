@@ -67,8 +67,13 @@ def retrieve_subset_out_of_query_set(query_set, list_of_keys):
             item = query_set[i][key]
             try:
                 processed_item = [convert_string_to_int_or_float(x) for x in item.split(',')]
+                if key == 'credit_card_name':
+                    processed_item = [x for x in item.split(',')] # Don't lower for Credit Card Names
             except:
-                processed_item = [convert_string_to_int_or_float(item)]
+                if key == 'credit_card_name':
+                    processed_item = [item] # Don't lower for Credit Card Names
+                else:
+                    processed_item = [convert_string_to_int_or_float(item)]
             sub_dictionary[key] = processed_item
         subset_of_query_set.append(sub_dictionary)
     return subset_of_query_set
@@ -91,7 +96,7 @@ def return_subset_out_of_spending_rewards_info_by_cardid(list_of_dict_of_credit_
 
 # Views Proper #
 def eligibility(request):
-    # This is the first html page
+    # This is the second html page
     return render(request, 'Recommender/eligibility.html')
 
 def welcome(request):
@@ -99,11 +104,11 @@ def welcome(request):
     return render(request, 'Recommender/welcome.html')
 
 def test(request):
-    # This is the first html page
+    # This is the test html page
     return render(request, 'Recommender/test.html')
 
 def preferences(request):
-    # This is the second html page
+    # This is the third html page
     map_POST_to_session(request) # Save the POST data into the session
     
     ### Process Data to determine eligibility ###
@@ -131,7 +136,7 @@ def preferences(request):
 
 
 def spending_checkbox(request):
-    # This is the third html page
+    # This is the fourth html page
     map_POST_to_session(request, True) # Save the POST data into the session
     
     ### Process Data to determine preference ###
@@ -156,7 +161,7 @@ def spending_checkbox(request):
 
 
 def spending_amount(request):
-    # This is the fourth html page
+    # This is the fifth html page
     map_POST_to_session(request) # Save the POST data into the session
     print(request.POST)
     print("Session")

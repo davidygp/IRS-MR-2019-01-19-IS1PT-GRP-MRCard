@@ -840,7 +840,6 @@ def return_compare_by_preference(points_to_miles_conversion, points_split_ratio,
     elif set(preferred_rewards_type) == set(['miles']):
         if debug: print("Miles Preference, %f" %(reward_value*points_to_miles_conversion))
         return reward_value*points_to_miles_conversion
-    print("LOOK HERE 2", bank_name)
     points_cashback_equivalent = fuzzy_logic_convert_points_to_cashback_value(reward_value, bank_name)
     miles_cashback_equivalent =  fuzzy_logic_convert_miles_to_cashback_value(reward_value*points_to_miles_conversion, points_to_miles_conversion, bank_name)
 
@@ -878,8 +877,10 @@ def return_best_credit_card(dict_of_spending_amounts_info, dict_of_credit_card_s
         points_to_miles_conversion = row['points_to_miles_conversion'][0]
         annual_fee = row['annual_fee'][0]
         bank_name = row['bank_name'][0]
-
-        print("LOOK HERE", bank_name)
+        card_type = row['card_type']
+        print(card_type)
+        print("\n\n")    
+    
         cashback_value = return_cashback_value(dict_of_spending_amounts_info, row, contactless_CF, debug)
         reward_value =  return_reward_value(dict_of_spending_amounts_info, row, contactless_CF, debug)
 
@@ -897,30 +898,29 @@ def return_best_credit_card(dict_of_spending_amounts_info, dict_of_credit_card_s
         annual_fee = annual_fee
         total_cash_val_equivalent = total_cash_val_equivalent
         
-        preferred_rewards_type = dict_of_cashback_points_miles_preference_info['preferred_rewards_type']
         ## Calculate for only ONE preference: cashback/ points/ miles ##
-        if set(preferred_rewards_type) == set(['cashback']):
+        if set(card_type) == set(['cashback']):
             cashback_amount = cashback_value
-        elif set(preferred_rewards_type) == set(['points']):
+        elif set(card_type) == set(['points']):
             if debug: print("Points Preference, %f" %(reward_value))
             points_amount = reward_value
-        elif set(preferred_rewards_type) == set(['miles']):
+        elif set(card_type) == set(['miles']):
             if debug: print("Miles Preference, %f" %(reward_value*points_to_miles_conversion))
             miles_amount = reward_value*points_to_miles_conversion
 
         ## Calculate for TWO preference: any 2 out of cashback/ points/ miles ##
-        if set(preferred_rewards_type) == set(['cashback', 'points']):
+        if set(card_type) == set(['cashback', 'points']):
             cashback_amount = cashback_value
             points_amount = reward_value
-        elif set(preferred_rewards_type) == set(['cashback', 'miles']):
+        elif set(card_type) == set(['cashback', 'miles']):
             cashback_amount = cashback_value
             miles_amount = reward_value
-        elif set(preferred_rewards_type) == set(['points', 'miles']):
+        elif set(card_type) == set(['points', 'miles']):
             points_amount = points_split_ratio*reward_value 
             miles_amount = (1 - points_split_ratio)*reward_value
 
         ## Calculate for THREE preference: all three of cashback/ points/ miles ##
-        if set(preferred_rewards_type) == set(['cashback', 'points', 'miles']):
+        if set(card_type) == set(['cashback', 'points', 'miles']):
             cashback_amount = cashback_value
             points_amount = points_split_ratio*reward_value 
             miles_amount = (1 - points_split_ratio)*reward_value
