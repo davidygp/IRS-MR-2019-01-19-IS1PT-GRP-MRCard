@@ -60,7 +60,7 @@ Go to URL using web browser http://127.0.0.1:8000/
 $ (MRCard-env) $ source deactivate
 
 # SECTION 6 : PROJECT REPORT / PAPER
-<Github File Link>  https://github.com/davidygp/IRS-MR-2019-01-19-IS1PT-GRP-MRCard/tree/master/ProjectReport
+<Github File Link>  https://github.com/davidygp/IRS-MR-2019-01-19-IS1PT-GRP-MRCard/tree/master/ProjectReport/Report.pdf
 
 Recommended Sections for Project Report / Paper:
 
@@ -77,3 +77,12 @@ Recommended Sections for Project Report / Paper:
 MRCard Survey Result.xlsx
 + Results of survey
 + Insights derived, which helped on features selection that are subsequently used in our system
+
+Interview with Hu Juan.mps
++ Audio of the interview process with domain expert
+
+Card Data - Bank Card Data (Cleaned_v2).csv
++ Data that used in the backend 
+
+Data Fields - Sheet1.csv
++ Variables that used in the backend and rules
