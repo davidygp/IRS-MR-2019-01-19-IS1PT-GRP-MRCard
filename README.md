@@ -47,7 +47,7 @@ Go to URL using web browser http://127.0.0.1:8000/
 $ (MRCard-env) $ source deactivate
 
 # SECTION 6 : PROJECT REPORT / PAPER
-<Github File Link>  https://github.com/telescopeuser/Workshop-Project-Submission-Template/blob/master/ProjectReport/Project%20Report%20HDB-BTO.pdf
+<Github File Link>  https://github.com/davidygp/IRS-MR-2019-01-19-IS1PT-GRP-MRCard/tree/master/ProjectReport
 
 Recommended Sections for Project Report / Paper:
 
