@@ -69,7 +69,6 @@ Recommended Sections for Project Report / Paper:
 + Project Solution
 + Project Performance & Validation
 + Project Conclusions: Findings & Recommendation
-+ List of Abbreviations
 + References
 
 # SECTION 7 : MISCELLANEOUS
