@@ -34,9 +34,11 @@ $ git clone https://github.com/davidygp/IRS-MR-2019-01-19-IS1PT-GRP-MRCard
 
 $ cd ./IRS-MR-2019-01-19-IS1PT-GRP-MRCard/SystemCode
 
-$ python manage.py runserver
+(MRCard-env) $ python manage.py runserver	
 
-Go to URL using web browser http://127.0.0.1:8000/
+Go to URL using web browser http://127.0.0.1:8000/	
+
+(MRCard-env) $ source deactivate
 
 [ 2 ] To run the system in other/local machine: Install additional necessary libraries. This application works in python 3 only.
 
@@ -52,7 +54,7 @@ $ source activate ./venv/MRCard-env
 
 Go to URL using web browser http://127.0.0.1:8000/
 
-$ (MRCard-env) $ source deactivate
+(MRCard-env) $ source deactivate
 
 # SECTION 6 : PROJECT REPORT / PAPER
 <Github File Link>  https://github.com/davidygp/IRS-MR-2019-01-19-IS1PT-GRP-MRCard/tree/master/ProjectReport/Report.pdf
